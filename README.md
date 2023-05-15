@@ -1,4 +1,4 @@
-# MVP
+# Exercise App MVP
 ## Features
 - create an account
 - view any exercise and its details
