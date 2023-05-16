@@ -1,0 +1,49 @@
+const { Workout, setsReps, trainingSplit } = require("../util/models");
+
+module.exports = {
+  addWorkout: async (req, res) => {
+    try {
+      const {
+        workout_name,
+        exercise1,
+        exercise2,
+        exercise3,
+        exercise4,
+        exercise5,
+        exercise6,
+        userId,
+      } = req.body;
+      await Workout.create({
+        workout_name,
+        exercise1,
+        exercise2,
+        exercise3,
+        exercise4,
+        exercise5,
+        exercise6,
+        userId,
+      });
+      res.status(200).send('Workout created')
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with addWorkout: ${err}`);
+    }
+  },
+  addSetsReps: async (req, res) => {
+    try {
+        const {sets, reps, workoutId} = req.body
+        await setsReps.create({sets, reps, workoutId})
+        res.status(200).send('setsReps created')
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with addSetsRep: ${err}`);
+    }
+  },
+  addTrainingSplit: () => {
+    try {
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with addTrainingSplit: ${err}`);
+    }
+  },
+};

@@ -4,7 +4,9 @@ const express = require("express");
 const cors = require("cors");
 const { PORT } = process.env;
 const { database } = require("./util/database");
-const {User, Workout, setsReps} = require('./util/models')
+const {User, Workout, setsReps, trainingSplit} = require('./util/models')
+const {register} = require('./controllers.js/auth')
+const {addWorkout, addSetsReps, addTrainingSplit} = require('./controllers.js/create')
 
 const app = express();
 app.use(express.json());
@@ -15,6 +17,14 @@ Workout.belongsTo(User)
 
 Workout.hasOne(setsReps)
 setsReps.belongsTo(Workout)
+
+User.hasMany(trainingSplit)
+trainingSplit.belongsTo(User)
+
+app.post('/api/register', register)
+
+app.post('/api/add-workout', addWorkout)
+app.post('/api/add-setsReps', addSetsReps)
 
 database.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
