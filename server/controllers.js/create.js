@@ -39,8 +39,11 @@ module.exports = {
       res.status(400).send(`error with addSetsRep: ${err}`);
     }
   },
-  addTrainingSplit: () => {
+  addTrainingSplit: async (req, res) => {
     try {
+        const {split_name, sunday, monday, tuesday, wednesday, thursday, friday, saturday, userId} = req.body
+        await trainingSplit.create({split_name, sunday, monday, tuesday, wednesday, thursday, friday, saturday, userId})
+        res.status(200).send('trainingSplit created')
     } catch (err) {
       console.log(err);
       res.status(400).send(`error with addTrainingSplit: ${err}`);

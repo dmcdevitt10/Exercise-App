@@ -25,6 +25,7 @@ app.post('/api/register', register)
 
 app.post('/api/add-workout', addWorkout)
 app.post('/api/add-setsReps', addSetsReps)
+app.post('/api/add-trainingSplit', addTrainingSplit)
 
 database.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
