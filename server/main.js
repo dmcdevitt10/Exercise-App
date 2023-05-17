@@ -7,6 +7,7 @@ const { database } = require("./util/database");
 const {User, Workout, setsReps, trainingSplit} = require('./util/models')
 const {register} = require('./controllers.js/auth')
 const {addWorkout, addSetsReps, addTrainingSplit} = require('./controllers.js/create')
+const {getUserWorkouts, getUserSetsReps, getUserTrainingSplits} = require('./controllers.js/get')
 
 const app = express();
 app.use(express.json());
@@ -23,9 +24,11 @@ trainingSplit.belongsTo(User)
 
 app.post('/api/register', register)
 
-app.post('/api/add-workout', addWorkout)
-app.post('/api/add-setsReps', addSetsReps)
-app.post('/api/add-trainingSplit', addTrainingSplit)
+app.post('/api/addWorkout', addWorkout)
+app.get('/api/getUserWorkouts/:userId', getUserWorkouts)
+
+app.post('/api/addSetsReps', addSetsReps)
+app.post('/api/addTrainingSplit', addTrainingSplit)
 
 database.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
