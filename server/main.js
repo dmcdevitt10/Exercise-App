@@ -28,7 +28,10 @@ app.post('/api/addWorkout', addWorkout)
 app.get('/api/getUserWorkouts/:userId', getUserWorkouts)
 
 app.post('/api/addSetsReps', addSetsReps)
+app.get ('/api/getWorkoutSetsReps/:workoutId', getUserSetsReps)
+
 app.post('/api/addTrainingSplit', addTrainingSplit)
+app.get('/api/getUserTrainingSplits/:userId', getUserTrainingSplits)
 
 database.sync({ force: true }).then(() => {
   app.listen(PORT, () => {

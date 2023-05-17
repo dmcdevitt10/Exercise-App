@@ -6,7 +6,7 @@ module.exports = {
     try {
       const { userId } = req.params;
       const workouts = await Workout.findAll({
-        where: { userId: userId },
+        where: { userId },
       });
       res.status(200).send(workouts);
     } catch (err) {
@@ -14,6 +14,28 @@ module.exports = {
       res.status(400).send(`error with getUserWorkouts: ${err}`);
     }
   },
-  getUserSetsReps: () => {},
-  getUserTrainingSplits: () => {},
+  getUserSetsReps: async (req, res) => {
+    try {
+      const { workoutId } = req.params;
+      const setsAndReps = await setsReps.findAll({
+        where: { workoutId },
+      });
+      res.status(200).send(setsAndReps);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with getUserSetsReps: ${err}`);
+    }
+  },
+  getUserTrainingSplits: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const trainingSplits = await trainingSplit.findAll({
+        where: { userId },
+      });
+      res.status(200).send(trainingSplits)
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with getTrainingSplits: ${err}`);
+    }
+  },
 };
