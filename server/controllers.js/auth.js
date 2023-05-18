@@ -44,4 +44,36 @@ module.exports = {
       res.status(400).send(`error with register: ${err}`);
     }
   },
+  login: async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      let foundUser = await User.findOne({ where: { username } });
+      if (foundUser) {
+        const isAuthenticated = bcrypt.compareSync(
+          password,
+          foundUser.password
+        );
+        if (isAuthenticated) {
+          const token = createToken(
+            foundUser.dataValues.username,
+            foundUser.dataValues.id
+          );
+          const exp = Date.now() + 1000 * 60 * 60 * 48;
+          res.status(200).send({
+            username: foundUser.dataValues.username,
+            userId: foundUser.dataValues.id,
+            token,
+            exp,
+          });
+        } else {
+          res.status(400).send("incorrect username or password");
+        }
+      } else {
+        res.status(400).send("incorrect username or password");
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with login: ${err}`);
+    }
+  },
 };
