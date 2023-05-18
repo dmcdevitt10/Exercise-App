@@ -1,0 +1,19 @@
+.form_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_register_form {
+  height: 50%;
+  width: 43%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgb(224, 221, 221);
+  box-shadow: 5px 5px 11px rgb(168, 163, 163);
+}

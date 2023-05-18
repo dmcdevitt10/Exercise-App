@@ -1,9 +1,10 @@
 import './App.css';
+import RegisterAndLogin from './screens/RegisterAndLogin';
 
 function App() {
   return (
     <div className="App">
-      <h1>App</h1>
+      <RegisterAndLogin />
     </div>
   );
 }
