@@ -1,6 +1,7 @@
 {
   "name": "exercise-app",
   "version": "0.1.0",
+  "main": "server/main.js",
   "proxy": "http://localhost:5060",
   "private": true,
   "dependencies": {
