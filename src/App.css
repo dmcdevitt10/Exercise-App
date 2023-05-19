@@ -3,3 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+header { 
+  background-color: rgb(137, 137, 137);
+  width: 100%;
+  height: 120px;
+}
