@@ -1,4 +1,4 @@
-const { Workout, setsReps, trainingSplit } = require("../util/models");
+const { Workout, setsReps, trainingSplit, Exercise } = require("../util/models");
 
 module.exports = {
   addWorkout: async (req, res) => {
@@ -49,4 +49,14 @@ module.exports = {
       res.status(400).send(`error with addTrainingSplit: ${err}`);
     }
   },
+  addExercise: async (req, res) => {
+    try {
+      const {bodyPart, equipment, gifUrl, exerciseId, name, target} = req.body
+      await Exercise.create({bodyPart, equipment, gifUrl, exerciseId, name, target})
+      res.status(200).send('exercise created')
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with addExercise: ${err}`);
+    }
+  }
 };

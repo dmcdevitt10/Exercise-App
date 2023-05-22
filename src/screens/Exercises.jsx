@@ -17,6 +17,19 @@ const Exercises = () => {
 
   //   try {
   //     axios.request(options).then((res) => {
+  //       for(let i = 0; i < res.data.length; i++){
+  //         let body = {
+  //           bodyPart: res.data[i].bodyPart,
+  //           equipment: res.data[i].equipment,
+  //           gifUrl: res.data[i].gifUrl,
+  //           exerciseId: res.data[i].id,
+  //           name: res.data[i].name,
+  //           target: res.data[i].target
+  //         }
+  //         axios.post('/api/addExercise', body).then((res) => {
+  //           console.log(res.data)
+  //         })
+  //       }
   //       setExercises(res.data);
   //     });
   //   } catch (err) {
@@ -24,7 +37,20 @@ const Exercises = () => {
   //   }
   // }, []);
 
-  console.log(exercises);
+  // console.log(exercises);
+  // if(exercises.length > 1){
+  //   for(let i = 0; i < exercises.length; i++){
+  //     let body = {
+  //       bodyPart: exercises[i].bodyPart,
+  //       equipment: exercises[i].equipment,
+  //       gifUrl: exercises[i].gifUrl,
+  //       exerciseId: exercises[i].id,
+  //       name: exercises[i].name,
+  //       target: exercises[i].target
+  //     }
+  //     axios.post('/api/addExercise', body)
+  //   }
+  // }
 
   return (
     <div>

@@ -70,7 +70,7 @@ module.exports = {
       allowNull: false,
     },
   }),
-  trainingSplit: database.define('training_split', {
+  trainingSplit: database.define("training_split", {
     id: {
       primaryKey: true,
       allowNull: false,
@@ -78,36 +78,67 @@ module.exports = {
       type: DataTypes.INTEGER,
     },
     split_name: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
     sunday: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
     monday: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
     tuesday: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
     wednesday: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
     thursday: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
     friday: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
     saturday: {
-      type: DataTypes.STRING({length: 50}),
-      allowNull: false
+      type: DataTypes.STRING({ length: 50 }),
+      allowNull: false,
     },
-  })
+  }),
+  Exercise: database.define("exercise", {
+    id: {
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+    },
+    bodyPart: {
+      type: DataTypes.STRING({ length: 400 }),
+      allowNull: true,
+    },
+    equipment: {
+      type: DataTypes.STRING({ length: 400 }),
+      allowNull: true,
+    },
+    gifUrl: {
+      type: DataTypes.STRING({ length: 400 }),
+    },
+    exerciseId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    name: {
+      type: DataTypes.STRING({ length: 400 }),
+      allowNull: true,
+    },
+    target: {
+      type: DataTypes.STRING({ length: 400 }),
+      allowNull: true,
+    },
+  }),
 };

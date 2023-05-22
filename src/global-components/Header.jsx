@@ -1,21 +1,34 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import AuthContext from "./AuthContext";
 
 const Header = () => {
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate()
   return (
     <header>
-      <ul>
+      {/* <ul>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
           <NavLink to="/exercises">Exercises</NavLink>
         </li>
-      </ul>
-      <button onClick={() => authCtx.logout()}>Logout</button>
+      </ul> */}
+      <nav>
+        <ul>
+          <li>
+          <button onClick={() => navigate('/')}>Home</button>
+          </li>
+          <li>
+          <button onClick={() => navigate('/exercises')}>Exercises</button>
+          </li>
+          <li>
+            <button onClick={() => authCtx.logout()}>Logout</button>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

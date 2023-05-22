@@ -6,7 +6,7 @@ const { PORT } = process.env;
 const { database } = require("./util/database");
 const {User, Workout, setsReps, trainingSplit} = require('./util/models')
 const {register, login} = require('./controllers.js/auth')
-const {addWorkout, addSetsReps, addTrainingSplit} = require('./controllers.js/create')
+const {addWorkout, addSetsReps, addTrainingSplit, addExercise} = require('./controllers.js/create')
 const {getUserWorkouts, getUserSetsReps, getUserTrainingSplits} = require('./controllers.js/get')
 
 const app = express();
@@ -34,7 +34,9 @@ app.get ('/api/getWorkoutSetsReps/:workoutId', getUserSetsReps)
 app.post('/api/addTrainingSplit', addTrainingSplit)
 app.get('/api/getUserTrainingSplits/:userId', getUserTrainingSplits)
 
-database.sync({ force: true }).then(() => {
+app.post('/api/addExercise', addExercise)
+
+database.sync(/*{ force: true }*/).then(() => {
   app.listen(PORT, () => {
     console.log(`app is listening on port ${PORT}`);
   });
