@@ -1,4 +1,4 @@
-const { Workout, setsReps, trainingSplit } = require("../util/models");
+const { Workout, setsReps, trainingSplit, Exercise } = require("../util/models");
 const { User } = require("../util/models");
 
 module.exports = {
@@ -38,4 +38,13 @@ module.exports = {
       res.status(400).send(`error with getTrainingSplits: ${err}`);
     }
   },
+  getExercises: async (req, res) => {
+    try {
+      const exercises = await Exercise.findAll()
+      res.status(200).send(exercises)
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with getExercises: ${err}`);
+    }
+  }
 };
