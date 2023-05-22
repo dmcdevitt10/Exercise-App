@@ -1,30 +1,65 @@
+.menu_exercises_container {
+  display: flex;
+}
+
 .menu_container {
-    background-color: rgb(255, 255, 255);
-    height: calc(100vh - 90px);
-    width: 300px;
-    border-right: 1px solid rgb(192, 190, 190);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  height: calc(100vh - 90px);
+  width: 300px;
+  border-right: 1px solid rgb(192, 190, 190);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 90px;
 }
 
 .menu_container button {
-    background-color: white;
-    height: 100%;
-    width: 100%;
-    border: 0px;
-    border-bottom: 1px solid rgb(192, 190, 190, 0.5);
-    font-size: 1.15rem;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  border: 0px;
+  border-bottom: 1px solid rgb(192, 190, 190, 0.5);
+  font-size: 1.15rem;
 }
 
 .menu_container button:focus {
-    color: white;
-    background-color: red;
+  color: white;
+  background-color: red;
 }
 
 .menu_container button:hover {
-    color: white;
-    background-color: red;
-    transition: .28s;
+  color: white;
+  background-color: red;
+  transition: 0.28s;
+}
+
+.exercises_container {
+  height: 100px;
+  width: calc(100vw - 300px);
+  height: fit-content;
+  margin-left: 300px;
+  margin-top: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.exercise_card {
+  width: 22%;
+  margin-top: 20px;
+  height: 450px;
+  border: 2px solid red;
+  box-shadow: 5px 5px 11px rgb(238, 188, 188);
+  border-radius: 14px;
+}
+
+.exercise_card:hover {
+  width: 22.7%;
+  transition: 0.5s;
+}
+
+.exercise_card img {
+  width: 100%;
 }

@@ -5,35 +5,75 @@ import classes from "./Exercises.module.css";
 
 const Exercises = () => {
   const [exercises, setExercises] = useState([]);
+  const [chosenMuscle, setChosenMuscle] = useState("");
 
   useEffect(() => {
-    axios.get('/api/getExercises').then((res) => {
-      setExercises(res.data)
-    })
-  }, [])
-  
+    axios.get("/api/getExercises").then((res) => {
+      setExercises(res.data);
+    });
+  }, []);
+
   return (
-    <div>
+    <div className={classes.menu_exercises_container}>
       <div className={classes.menu_container}>
-        <button>abductors</button>
-        <button>abs</button>
-        <button>adductors</button>
-        <button>biceps</button>
-        <button>calves</button>
-        <button>cardiovascular system</button>
-        <button>delts</button>
-        <button>forearms</button>
-        <button>glutes</button>
-        <button>hamstrings</button>
-        <button>lats</button>
-        <button>levatar scapulae</button>
-        <button>pectorals</button>
-        <button>quads</button>
-        <button>serratus anterior</button>
-        <button>spine</button>
-        <button>traps</button>
-        <button>triceps</button>
-        <button>upperback</button>
+        <button onClick={() => setChosenMuscle("abductors")}>abductors</button>
+        <button onClick={() => setChosenMuscle("abs")}>abs</button>
+        <button onClick={() => setChosenMuscle("adductors")}>adductors</button>
+        <button onClick={() => setChosenMuscle("biceps")}>biceps</button>
+        <button onClick={() => setChosenMuscle("calves")}>calves</button>
+        <button onClick={() => setChosenMuscle("cardiovascular system")}>
+          cardiovascular system
+        </button>
+        <button onClick={() => setChosenMuscle("delts")}>delts</button>
+        <button onClick={() => setChosenMuscle("forearms")}>forearms</button>
+        <button onClick={() => setChosenMuscle("glutes")}>glutes</button>
+        <button onClick={() => setChosenMuscle("hamstrings")}>
+          hamstrings
+        </button>
+        <button onClick={() => setChosenMuscle("lats")}>lats</button>
+        <button onClick={() => setChosenMuscle("levator scapulae")}>
+          levator scapulae
+        </button>
+        <button onClick={() => setChosenMuscle("pectorals")}>pectorals</button>
+        <button onClick={() => setChosenMuscle("quads")}>quads</button>
+        <button onClick={() => setChosenMuscle("serratus anterior")}>
+          serratus anterior
+        </button>
+        <button onClick={() => setChosenMuscle("spine")}>spine</button>
+        <button onClick={() => setChosenMuscle("traps")}>traps</button>
+        <button onClick={() => setChosenMuscle("triceps")}>triceps</button>
+        <button onClick={() => setChosenMuscle("upper back")}>
+          upper back
+        </button>
+      </div>
+      <div className={classes.exercises_container}>
+        {chosenMuscle === ""
+          ? exercises?.map((exercise) => {
+              return (
+                <div className={classes.exercise_card}>
+                  <h3>{exercise.name}</h3>
+                  <h3>{exercise.target}</h3>
+                  <h3>{exercise.bodyPart}</h3>
+                  <h3>{exercise.equipment}</h3>
+                  <img src={exercise.gifUrl} />
+                </div>
+              );
+            })
+          : exercises
+              ?.filter((exercise) => {
+                return exercise.target === chosenMuscle;
+              })
+              .map((exercise) => {
+                return (
+                  <div className={classes.exercise_card}>
+                    <h3>{exercise.name}</h3>
+                    <h3>{exercise.target}</h3>
+                    <h3>{exercise.bodyPart}</h3>
+                    <h3>{exercise.equipment}</h3>
+                    <img src={exercise.gifUrl} />
+                  </div>
+                );
+              })}
       </div>
     </div>
   );
