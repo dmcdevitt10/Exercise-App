@@ -6,12 +6,50 @@ import classes from "./Exercises.module.css";
 const Exercises = () => {
   const [exercises, setExercises] = useState([]);
   const [chosenMuscle, setChosenMuscle] = useState("");
+  const [workout, setWorkout] = useState([]);
+
+  console.log(workout);
 
   useEffect(() => {
     axios.get("/api/getExercises").then((res) => {
       setExercises(res.data);
     });
   }, []);
+
+  const saveWorkout = () => {
+    const body = {
+      workout_name: "back",
+      exercise1: null,
+      exercise2: null,
+      exercise3: null,
+      exercise4: null,
+      exercise5: null,
+      exercise6: null,
+    };
+    if (workout[0]) {
+      body.exercise1 = workout[0];
+    }
+    if (workout[1]) {
+      body.exercise2 = workout[1];
+    }
+    if (workout[2]) {
+      body.exercise3 = workout[2];
+    }
+    if (workout[3]) {
+      body.exercise4 = workout[3];
+    }
+    if (workout[4]) {
+      body.exercise5 = workout[4];
+    }
+    if (workout[5]) {
+      body.exercise6 = workout[5];
+    }
+    axios.post("/api/addWorkout", body).then((res) => {
+      console.log(res.data);
+    });
+
+    setWorkout([]);
+  };
 
   return (
     <div className={classes.menu_exercises_container}>
@@ -47,6 +85,7 @@ const Exercises = () => {
         </button>
       </div>
       <div className={classes.exercises_container}>
+        <button onClick={saveWorkout}>save workout</button>
         {chosenMuscle === ""
           ? exercises?.map((exercise) => {
               return (
@@ -56,6 +95,11 @@ const Exercises = () => {
                   <h3>{exercise.bodyPart}</h3>
                   <h3>{exercise.equipment}</h3>
                   <img src={exercise.gifUrl} />
+                  <button
+                    onClick={() => setWorkout([...workout, exercise.name])}
+                  >
+                    Add to Workout
+                  </button>
                 </div>
               );
             })
@@ -71,6 +115,11 @@ const Exercises = () => {
                     <h3>{exercise.bodyPart}</h3>
                     <h3>{exercise.equipment}</h3>
                     <img src={exercise.gifUrl} />
+                    <button
+                      onClick={() => setWorkout([...workout, exercise.name])}
+                    >
+                      Add to Workout
+                    </button>
                   </div>
                 );
               })}
