@@ -6,14 +6,14 @@ import classes from "./Auth.module.css";
 import AuthContext from "../global-components/AuthContext";
 
 const Auth = () => {
-  const authCtx = useContext(AuthContext)
-  const navigate = useNavigate()
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if(authCtx.token){
-      navigate('/home')
+    if (authCtx.token) {
+      navigate("/home");
     }
-  }, [])
+  }, []);
 
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -29,7 +29,7 @@ const Auth = () => {
 
     axios.post(login ? "/api/login" : "/api/register", body).then((res) => {
       console.log(res.data);
-      authCtx.login(res.data.token, res.data.exp, res.data.userId)
+      authCtx.login(res.data.token, res.data.exp, res.data.userId);
     });
 
     console.log(usernameRef.current.value, passwordRef.current.value);
@@ -43,7 +43,7 @@ const Auth = () => {
   return (
     <div className={classes.form_container}>
       <form onSubmit={submitHandler} className={classes.login_register_form}>
-        <div>RegisterAndLogin</div>
+        {login ? <h1>Login</h1> : <h1>Register</h1>}
         <input type="text" ref={usernameRef} placeholder="username" />
         <input type="password" ref={passwordRef} placeholder="password" />
         {login ? (
