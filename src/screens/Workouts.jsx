@@ -9,7 +9,7 @@ const Workouts = () => {
   const {userId} = useContext(AuthContext)
 
   useEffect(() => {
-    axios.get(`/api/getUserWorkouts/${userId}`).then((res) => {
+    axios.get(`/api/getUserWorkoutsAndSetsReps/${userId}`).then((res) => {
       console.log(res.data)
     })
   }, [])

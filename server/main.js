@@ -7,7 +7,7 @@ const { database } = require("./util/database");
 const {User, Workout, setsReps, trainingSplit} = require('./util/models')
 const {register, login} = require('./controllers.js/auth')
 const {addWorkout, addSetsReps, addTrainingSplit, addExercise} = require('./controllers.js/create')
-const {getUserWorkouts, getUserSetsReps, getUserTrainingSplits, getExercises} = require('./controllers.js/get')
+const {getUserWorkouts, getUserWorkoutsAndSetsReps, getUserSetsReps, getUserTrainingSplits, getExercises} = require('./controllers.js/get')
 
 const app = express();
 app.use(express.json());
@@ -27,6 +27,7 @@ app.post('/api/login', login)
 
 app.post('/api/addWorkout', addWorkout)
 app.get('/api/getUserWorkouts/:userId', getUserWorkouts)
+app.get('/api/getUserWorkoutsAndSetsReps/:userId', getUserWorkoutsAndSetsReps)
 
 app.post('/api/addSetsReps', addSetsReps)
 app.get ('/api/getWorkoutSetsReps/:workoutId', getUserSetsReps)

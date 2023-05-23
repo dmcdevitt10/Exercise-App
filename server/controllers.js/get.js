@@ -14,6 +14,25 @@ module.exports = {
       res.status(400).send(`error with getUserWorkouts: ${err}`);
     }
   },
+  getUserWorkoutsAndSetsReps: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const workouts = await Workout.findAll({
+        where: { userId },
+        include: [
+          {
+            model: setsReps,
+            required: true,
+            attributes: ['sets', 'reps']
+          }
+        ]
+      });
+      res.status(200).send(workouts);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with getUserWorkouts: ${err}`);
+    }
+  },
   getUserSetsReps: async (req, res) => {
     try {
       const { workoutId } = req.params;
