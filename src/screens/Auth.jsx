@@ -42,8 +42,9 @@ const Auth = () => {
 
   return (
     <div className={classes.form_container}>
-      <form onSubmit={submitHandler} className={classes.login_register_form}>
-        {login ? <h1>Login</h1> : <h1>Register</h1>}
+      <form name="login" onSubmit={submitHandler} className={classes.login_register_form}>
+        {/* {login ? <h1>Login</h1> : <h1>Register</h1>} */}
+        <h1>Login</h1>
         <input type="text" ref={usernameRef} placeholder="username" />
         <input type="password" ref={passwordRef} placeholder="password" />
         {login ? (

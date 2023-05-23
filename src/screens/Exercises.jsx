@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
 
 import classes from "./Exercises.module.css";
@@ -8,6 +8,11 @@ const Exercises = () => {
   const [exercises, setExercises] = useState([]);
   const [chosenMuscle, setChosenMuscle] = useState("");
   const [workout, setWorkout] = useState([]);
+  const [workoutDisplay, setWorkoutDisplay] = useState(false);
+  const [workoutId, setWorkoutId] = useState(0);
+  const workoutNameRef = useRef();
+  const sets = useRef();
+  const reps = useRef();
 
   // const muscleOptionsArr = [
   //   "abductors",
@@ -40,11 +45,14 @@ const Exercises = () => {
     axios.get("/api/getExercises").then((res) => {
       setExercises(res.data);
     });
+    axios.get(`/api/getUserWorkouts/${userId}`).then((res) => {
+      setWorkoutId(res.data[res.data.length - 1].id + 1);
+    });
   }, []);
 
-  const saveWorkout = () => {
-    const body = {
-      workout_name: "calves",
+  const saveWorkout = async () => {
+    const workoutBody = {
+      workout_name: workoutNameRef.current.value,
       exercise1: null,
       exercise2: null,
       exercise3: null,
@@ -54,28 +62,44 @@ const Exercises = () => {
       userId: userId,
     };
     if (workout[0]) {
-      body.exercise1 = workout[0];
+      workoutBody.exercise1 = workout[0];
     }
     if (workout[1]) {
-      body.exercise2 = workout[1];
+      workoutBody.exercise2 = workout[1];
     }
     if (workout[2]) {
-      body.exercise3 = workout[2];
+      workoutBody.exercise3 = workout[2];
     }
     if (workout[3]) {
-      body.exercise4 = workout[3];
+      workoutBody.exercise4 = workout[3];
     }
     if (workout[4]) {
-      body.exercise5 = workout[4];
+      workoutBody.exercise5 = workout[4];
     }
     if (workout[5]) {
-      body.exercise6 = workout[5];
+      workoutBody.exercise6 = workout[5];
     }
-    axios.post("/api/addWorkout", body).then((res) => {
+    axios
+      .post("/api/addWorkout", workoutBody)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    const setsRepsBody = {
+      sets: sets.current.value,
+      reps: reps.current.value,
+      workoutId: workoutId,
+    };
+
+    await axios.post("/api/addSetsReps", setsRepsBody).then((res) => {
       console.log(res.data);
     });
 
     setWorkout([]);
+    workoutNameRef.current.value = "";
+    sets.current.value = "";
+    reps.current.value = "";
   };
 
   const onClick = (muscle) => setChosenMuscle(muscle);
@@ -292,7 +316,6 @@ const Exercises = () => {
         </button>
       </div>
       <div className={classes.exercises_container}>
-        <button onClick={saveWorkout}>save workout</button>
         {chosenMuscle === ""
           ? exercises?.map((exercise) => {
               return (
@@ -302,11 +325,13 @@ const Exercises = () => {
                   <h3>{exercise.bodyPart}</h3>
                   <h3>{exercise.equipment}</h3>
                   <img src={exercise.gifUrl} />
-                  <button
-                    onClick={() => setWorkout([...workout, exercise.name])}
-                  >
-                    Add to Workout
-                  </button>
+                  {workoutDisplay ? (
+                    <button
+                      onClick={() => setWorkout([...workout, exercise.name])}
+                    >
+                      Add to Workout
+                    </button>
+                  ) : null}
                 </div>
               );
             })
@@ -322,14 +347,37 @@ const Exercises = () => {
                     <h3>{exercise.bodyPart}</h3>
                     <h3>{exercise.equipment}</h3>
                     <img src={exercise.gifUrl} />
-                    <button
-                      onClick={() => setWorkout([...workout, exercise.name])}
-                    >
-                      Add to Workout
-                    </button>
+                    {workoutDisplay ? (
+                      <button
+                        onClick={() => setWorkout([...workout, exercise.name])}
+                      >
+                        Add to Workout
+                      </button>
+                    ) : null}
                   </div>
                 );
               })}
+      </div>
+      {!workoutDisplay ? (
+        <button
+          onClick={() => setWorkoutDisplay(!workoutDisplay)}
+          className={classes.workout_btn}
+        >
+          Create Workout
+        </button>
+      ) : null}
+      <div
+        style={workoutDisplay ? { opacity: 1 } : { opacity: 0 }}
+        className={classes.workout_display}
+      >
+        <h1>Exercises</h1>
+        {workout?.map((exercise) => {
+          return <h4>{exercise}</h4>;
+        })}
+        <input ref={sets} placeholder="sets" />
+        <input ref={reps} placeholder="reps" />
+        <input ref={workoutNameRef} placeholder="Workout Name" />
+        <button onClick={saveWorkout}>save workout</button>
       </div>
     </div>
   );

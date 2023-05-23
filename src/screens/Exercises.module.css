@@ -33,6 +33,7 @@
   color: white;
   background-color: red;
   transition: 0.28s;
+  cursor: pointer;
 }
 
 .exercises_container {
@@ -64,4 +65,44 @@
 
 .exercise_card img {
   width: 100%;
+}
+
+.workout_btn {
+  background-color: black;
+  color: white;
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  height: 45px;
+  width: 135px;
+  border: 0px;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.workout_btn:hover {
+  color: white;
+  background-color: red;
+  transition: 0.28s;
+  cursor: pointer;
+}
+
+.workout_display {
+  background-color: black;
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  height: 300px;
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: .22s;
+  border-radius: 20px;
+}
+
+.workout_display h4, h1 {
+  color: white;
 }
