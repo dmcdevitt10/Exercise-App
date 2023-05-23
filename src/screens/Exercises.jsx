@@ -9,6 +9,28 @@ const Exercises = () => {
   const [chosenMuscle, setChosenMuscle] = useState("");
   const [workout, setWorkout] = useState([]);
 
+  // const muscleOptionsArr = [
+  //   "abductors",
+  //   "abs",
+  //   "adductors",
+  //   "biceps",
+  //   "calves",
+  //   "cardiovascular system",
+  //   "delts",
+  //   "forearms",
+  //   "glutes",
+  //   "hamstrings",
+  //   "lats",
+  //   "levator scapulae",
+  //   "pectorals",
+  //   "quads",
+  //   "serratus anterior",
+  //   "spine",
+  //   "traps",
+  //   "triceps",
+  //   "upper back",
+  // ];
+
   const { userId } = useContext(AuthContext);
   // console.log(userId)
 
@@ -56,36 +78,216 @@ const Exercises = () => {
     setWorkout([]);
   };
 
+  const onClick = (muscle) => setChosenMuscle(muscle);
+
+  // const btnDisplay = muscleOptionsArr.map((muscle) => {
+  //   return (
+  //     <button
+  //       style={
+  //         chosenMuscle === muscle
+  //           ? { color: "white", backgroundColor: "red" }
+  //           : { color: "black" }
+  //       }
+  //       onClick={setChosenMuscle(muscle)}
+  //     >
+  //       {muscle}
+  //     </button>
+  //   );
+  // })
+
   return (
     <div className={classes.menu_exercises_container}>
       <div className={classes.menu_container}>
-        <button onClick={() => setChosenMuscle("abductors")}>abductors</button>
-        <button onClick={() => setChosenMuscle("abs")}>abs</button>
-        <button onClick={() => setChosenMuscle("adductors")}>adductors</button>
-        <button onClick={() => setChosenMuscle("biceps")}>biceps</button>
-        <button onClick={() => setChosenMuscle("calves")}>calves</button>
-        <button onClick={() => setChosenMuscle("cardiovascular system")}>
+        {/* {btnDisplay} */}
+
+        <button
+          style={
+            chosenMuscle === "abductors"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("abductors")}
+        >
+          abductors
+        </button>
+        <button
+          style={
+            chosenMuscle === "abs"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("abs")}
+        >
+          abs
+        </button>
+        <button
+          style={
+            chosenMuscle === "adductors"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("adductors")}
+        >
+          adductors
+        </button>
+        <button
+          style={
+            chosenMuscle === "biceps"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("biceps")}
+        >
+          biceps
+        </button>
+        <button
+          style={
+            chosenMuscle === "calves"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("calves")}
+        >
+          calves
+        </button>
+        <button
+          style={
+            chosenMuscle === "cardiovascular system"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("cardiovascular system")}
+        >
           cardiovascular system
         </button>
-        <button onClick={() => setChosenMuscle("delts")}>delts</button>
-        <button onClick={() => setChosenMuscle("forearms")}>forearms</button>
-        <button onClick={() => setChosenMuscle("glutes")}>glutes</button>
-        <button onClick={() => setChosenMuscle("hamstrings")}>
+        <button
+          style={
+            chosenMuscle === "delts"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("delts")}
+        >
+          delts
+        </button>
+        <button
+          style={
+            chosenMuscle === "forearms"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("forearms")}
+        >
+          forearms
+        </button>
+        <button
+          style={
+            chosenMuscle === "glutes"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("glutes")}
+        >
+          glutes
+        </button>
+        <button
+          style={
+            chosenMuscle === "hamstrings"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("hamstrings")}
+        >
           hamstrings
         </button>
-        <button onClick={() => setChosenMuscle("lats")}>lats</button>
-        <button onClick={() => setChosenMuscle("levator scapulae")}>
+        <button
+          style={
+            chosenMuscle === "lats"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("lats")}
+        >
+          lats
+        </button>
+        <button
+          style={
+            chosenMuscle === "levator scapulae"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("levator scapulae")}
+        >
           levator scapulae
         </button>
-        <button onClick={() => setChosenMuscle("pectorals")}>pectorals</button>
-        <button onClick={() => setChosenMuscle("quads")}>quads</button>
-        <button onClick={() => setChosenMuscle("serratus anterior")}>
+        <button
+          style={
+            chosenMuscle === "pectorals"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("pectorals")}
+        >
+          pectorals
+        </button>
+        <button
+          style={
+            chosenMuscle === "quads"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("quads")}
+        >
+          quads
+        </button>
+        <button
+          style={
+            chosenMuscle === "serratus anterior"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("serratus anterior")}
+        >
           serratus anterior
         </button>
-        <button onClick={() => setChosenMuscle("spine")}>spine</button>
-        <button onClick={() => setChosenMuscle("traps")}>traps</button>
-        <button onClick={() => setChosenMuscle("triceps")}>triceps</button>
-        <button onClick={() => setChosenMuscle("upper back")}>
+        <button
+          style={
+            chosenMuscle === "spine"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("spine")}
+        >
+          spine
+        </button>
+        <button
+          style={
+            chosenMuscle === "traps"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("traps")}
+        >
+          traps
+        </button>
+        <button
+          style={
+            chosenMuscle === "triceps"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("triceps")}
+        >
+          triceps
+        </button>
+        <button
+          style={
+            chosenMuscle === "upper back"
+              ? { color: "white", backgroundColor: "red" }
+              : { color: "black" }
+          }
+          onClick={() => setChosenMuscle("upper back")}
+        >
           upper back
         </button>
       </div>

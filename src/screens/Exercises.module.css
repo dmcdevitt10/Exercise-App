@@ -24,10 +24,10 @@
   font-size: 1.15rem;
 }
 
-.menu_container button:focus {
+/* .menu_container button:focus {
   color: white;
   background-color: red;
-}
+} */
 
 .menu_container button:hover {
   color: white;
