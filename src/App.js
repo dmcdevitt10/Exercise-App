@@ -7,6 +7,7 @@ import AuthContext from "./global-components/AuthContext";
 import Auth from "./screens/Auth";
 import Home from "./screens/Home";
 import Exercises from "./screens/Exercises";
+import Workouts from "./screens/Workouts";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -25,6 +26,10 @@ function App() {
         <Route
           path="/exercises"
           element={authCtx.token ? <Exercises /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/workouts"
+          element={authCtx.token ? <Workouts /> : <Navigate to="/auth" />}
         />
       </Routes>
     </div>

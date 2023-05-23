@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 
 import classes from "./Exercises.module.css";
+import AuthContext from "../global-components/AuthContext";
 
 const Exercises = () => {
   const [exercises, setExercises] = useState([]);
   const [chosenMuscle, setChosenMuscle] = useState("");
   const [workout, setWorkout] = useState([]);
+
+  const { userId } = useContext(AuthContext);
+  // console.log(userId)
 
   console.log(workout);
 
@@ -18,13 +22,14 @@ const Exercises = () => {
 
   const saveWorkout = () => {
     const body = {
-      workout_name: "back",
+      workout_name: "calves",
       exercise1: null,
       exercise2: null,
       exercise3: null,
       exercise4: null,
       exercise5: null,
       exercise6: null,
+      userId: userId,
     };
     if (workout[0]) {
       body.exercise1 = workout[0];

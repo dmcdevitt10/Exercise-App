@@ -1,0 +1,9 @@
+.workouts_container {
+    position: absolute;
+    background-color: rgb(153, 153, 173);
+    height: calc(100vh - 90px);
+    margin-top: 90px;
+    width: 100%;
+    color: white;
+    bottom: 0;
+}

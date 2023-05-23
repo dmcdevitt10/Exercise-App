@@ -25,6 +25,9 @@ const Header = () => {
           <button onClick={() => navigate('/exercises')}>Exercises</button>
           </li>
           <li>
+          <button onClick={() => navigate('/workouts')}>Workouts</button>
+          </li>
+          <li>
             <button onClick={() => authCtx.logout()}>Logout</button>
           </li>
         </ul>
