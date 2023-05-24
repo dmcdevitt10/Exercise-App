@@ -1,14 +1,12 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import classes from "./Home.module.css";
-import headerClasses from '../global-components/header.module.css'
+import headerClasses from "../global-components/header.module.css";
 
 import AuthContext from "../global-components/AuthContext";
 
-const Home = () => {
+const TrainingSplits = () => {
   const authCtx = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <header className={headerClasses.header}>
@@ -32,9 +30,9 @@ const Home = () => {
           </ul>
         </nav>
       </header>
-      Home
+      <div>TrainingSplits</div>
     </div>
   );
 };
 
-export default Home;
+export default TrainingSplits;

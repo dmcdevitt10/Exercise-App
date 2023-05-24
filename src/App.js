@@ -8,12 +8,13 @@ import Auth from "./screens/Auth";
 import Home from "./screens/Home";
 import Exercises from "./screens/Exercises";
 import Workouts from "./screens/Workouts";
+import TrainingSplits from "./screens/TrainingSplits";
 
 function App() {
   const authCtx = useContext(AuthContext);
   return (
     <div className="App">
-      {authCtx.token ? <Header /> : null}
+      {/* {authCtx.token ? <Header /> : null} */}
       <Routes>
         <Route
           path="/"
@@ -30,6 +31,10 @@ function App() {
         <Route
           path="/workouts"
           element={authCtx.token ? <Workouts /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/training-splits"
+          element={authCtx.token ? <TrainingSplits /> : <Navigate to="/auth" />}
         />
       </Routes>
     </div>

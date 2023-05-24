@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const { PORT } = process.env;
 const { database } = require("./util/database");
-const {User, Workout, setsReps, trainingSplit} = require('./util/models')
+const {User, Workout, setsReps, trainingSplit, wo} = require('./util/models')
 const {register, login} = require('./controllers.js/auth')
 const {addWorkout, addSetsReps, addTrainingSplit, addExercise} = require('./controllers.js/create')
 const {getUserWorkouts, getUserWorkoutsAndSetsReps, getUserSetsReps, getUserTrainingSplits, getExercises} = require('./controllers.js/get')
@@ -22,6 +22,9 @@ setsReps.belongsTo(Workout)
 
 User.hasMany(trainingSplit)
 trainingSplit.belongsTo(User)
+
+trainingSplit.hasMany(Workout)
+Workout.belongsToMany(trainingSplit, {through: 'workouts-training'})
 
 app.post('/api/register', register)
 app.post('/api/login', login)
