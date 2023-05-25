@@ -4,11 +4,12 @@ const express = require("express");
 const cors = require("cors");
 const { PORT } = process.env;
 const { database } = require("./util/database");
-const {User, Workout, setsReps, trainingSplit, wo} = require('./util/models')
+const {User, Workout, setsReps, trainingSplit, WorkoutSplit} = require('./util/models')
 const {register, login} = require('./controllers.js/auth')
-const {addWorkout, addSetsReps, addTrainingSplit, addExercise} = require('./controllers.js/create')
+const {addWorkout, addSetsReps, addTrainingSplit, addExercise, addWorkoutSplit} = require('./controllers.js/create')
 const {getUserWorkouts, getUserWorkoutsAndSetsReps, getUserSetsReps, getUserTrainingSplits, getExercises} = require('./controllers.js/get')
 const {deleteWorkout} = require('./controllers.js/delete')
+const {updateWorkout} = require('./controllers.js/update')
 
 const app = express();
 app.use(express.json());
@@ -23,8 +24,10 @@ setsReps.belongsTo(Workout)
 User.hasMany(trainingSplit)
 trainingSplit.belongsTo(User)
 
-trainingSplit.hasMany(Workout)
-Workout.belongsToMany(trainingSplit, {through: 'workouts-training'})
+Workout.hasMany(WorkoutSplit)
+WorkoutSplit.belongsTo(Workout)
+trainingSplit.hasMany(WorkoutSplit)
+WorkoutSplit.belongsTo(trainingSplit)
 
 app.post('/api/register', register)
 app.post('/api/login', login)
@@ -43,7 +46,10 @@ app.get('/api/getUserTrainingSplits/:userId', getUserTrainingSplits)
 app.post('/api/addExercise', addExercise)
 app.get('/api/getExercises', getExercises)
 
-database.sync(/*{ force: true }*/).then(() => {
+// app.post('/api/addWorkoutSplit', addWorkoutSplit)
+// app.put('/api/updateWorkout', updateWorkout)
+
+database.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
     console.log(`app is listening on port ${PORT}`);
   });

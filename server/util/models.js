@@ -141,4 +141,12 @@ module.exports = {
       allowNull: true,
     },
   }),
+  WorkoutSplit: database.define("workouts_split", {
+    id: {
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+    },
+  })
 };

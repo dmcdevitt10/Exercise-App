@@ -43,14 +43,14 @@ const Exercises = () => {
   const { userId } = useContext(AuthContext);
   // console.log(userId)
 
-  console.log(workout);
+  // console.log(workout);
 
   useEffect(() => {
     axios.get("/api/getExercises").then((res) => {
       setExercises(res.data);
     });
     axios.get(`/api/getUserWorkouts/${userId}`).then((res) => {
-      setWorkoutId(res.data[res.data.length - 1].id + 1);
+      // setWorkoutId(res.data[res.data.length - 1].id + 1);
     });
   }, []);
 
@@ -90,20 +90,28 @@ const Exercises = () => {
       })
       .catch((err) => console.log(err));
 
-    const setsRepsBody = {
-      sets: sets.current.value,
-      reps: reps.current.value,
-      workoutId: workoutId,
-    };
+    setTimeout(() => {
+      axios.get(`/api/getUserWorkouts/${userId}`).then((res) => {
+        let setsRepsBody = {
+          sets: sets.current.value,
+          reps: reps.current.value,
+          workoutId: res.data[res.data.length - 1].id,
+        };
 
-    await axios.post("/api/addSetsReps", setsRepsBody).then((res) => {
-      console.log(res.data);
-    });
-
-    setWorkout([]);
-    workoutNameRef.current.value = "";
-    sets.current.value = "";
-    reps.current.value = "";
+        
+        axios.post("/api/addSetsReps", setsRepsBody).then((res) => {
+          console.log(res.data);
+        });
+        
+      });
+    }, 1000);
+    
+    setTimeout(() => {
+      setWorkout([]);
+      workoutNameRef.current.value = "";
+      sets.current.value = "";
+      reps.current.value = "";
+    }, 2000);
   };
 
   const onClick = (muscle) => setChosenMuscle(muscle);

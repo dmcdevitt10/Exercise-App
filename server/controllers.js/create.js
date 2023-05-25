@@ -3,6 +3,7 @@ const {
   setsReps,
   trainingSplit,
   Exercise,
+  WorkoutSplit
 } = require("../util/models");
 
 module.exports = {
@@ -92,4 +93,14 @@ module.exports = {
       res.status(400).send(`error with addExercise: ${err}`);
     }
   },
+  addWorkoutSplit: async (req, res) => {
+    try {
+      // const {workoutId, trainingSplitId} = req.body
+      await WorkoutSplit.create(/*{workoutId, trainingSplitId}*/)
+      res.status(200).send('WorkoutSplit created')
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with addWorkoutSplit: ${err}`)
+    }
+  }
 };
