@@ -46,10 +46,10 @@ app.get('/api/getUserTrainingSplits/:userId', getUserTrainingSplits)
 app.post('/api/addExercise', addExercise)
 app.get('/api/getExercises', getExercises)
 
-// app.post('/api/addWorkoutSplit', addWorkoutSplit)
+app.post('/api/addWorkoutSplit', addWorkoutSplit)
 // app.put('/api/updateWorkout', updateWorkout)
 
-database.sync({ force: true }).then(() => {
+database.sync(/*{ force: true }*/).then(() => {
   app.listen(PORT, () => {
     console.log(`app is listening on port ${PORT}`);
   });
