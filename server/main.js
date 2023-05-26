@@ -7,7 +7,7 @@ const { database } = require("./util/database");
 const {User, Workout, setsReps, trainingSplit, WorkoutSplit} = require('./util/models')
 const {register, login} = require('./controllers.js/auth')
 const {addWorkout, addSetsReps, addTrainingSplit, addExercise, addWorkoutSplit} = require('./controllers.js/create')
-const {getUserWorkouts, getUserWorkoutsAndSetsReps, getUserSetsReps, getUserTrainingSplits, getExercises} = require('./controllers.js/get')
+const {getUserWorkouts, getUserWorkoutsAndSetsReps, getUserSetsReps, getUserTrainingSplits, getExercises, getSplitsAndWorkouts} = require('./controllers.js/get')
 const {deleteWorkout} = require('./controllers.js/delete')
 const {updateWorkout} = require('./controllers.js/update')
 
@@ -47,7 +47,7 @@ app.post('/api/addExercise', addExercise)
 app.get('/api/getExercises', getExercises)
 
 app.post('/api/addWorkoutSplit', addWorkoutSplit)
-// app.put('/api/updateWorkout', updateWorkout)
+app.get('/api/getSplitsAndWorkouts/:userId', getSplitsAndWorkouts)
 
 database.sync(/*{ force: true }*/).then(() => {
   app.listen(PORT, () => {

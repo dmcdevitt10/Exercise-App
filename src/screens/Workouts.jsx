@@ -9,6 +9,7 @@ import AuthContext from "../global-components/AuthContext";
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
+  const [getWorkouts, setGetWorkouts] = useState(false)
   const { userId } = useContext(AuthContext);
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ const Workouts = () => {
     axios.get(`/api/getUserWorkoutsAndSetsReps/${userId}`).then((res) => {
       setWorkouts(res.data);
     });
-  }, []);
+  }, [getWorkouts]);
   console.log(workouts);
 
   return (
@@ -61,6 +62,7 @@ const Workouts = () => {
                     .delete(`/api/deleteWorkout/${workout.id}`)
                     .then((res) => {
                       console.log(res.data);
+                      setGetWorkouts(!getWorkouts)
                     })
                     .catch((err) => console.log(err));
                 }}

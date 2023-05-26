@@ -1,4 +1,10 @@
-const { Workout, setsReps, trainingSplit, Exercise } = require("../util/models");
+const {
+  Workout,
+  setsReps,
+  trainingSplit,
+  Exercise,
+  WorkoutSplit,
+} = require("../util/models");
 const { User } = require("../util/models");
 
 module.exports = {
@@ -23,9 +29,9 @@ module.exports = {
           {
             model: setsReps,
             required: true,
-            attributes: ['sets', 'reps']
-          }
-        ]
+            attributes: ["sets", "reps"],
+          },
+        ],
       });
       res.status(200).send(workouts);
     } catch (err) {
@@ -51,7 +57,7 @@ module.exports = {
       const trainingSplits = await trainingSplit.findAll({
         where: { userId },
       });
-      res.status(200).send(trainingSplits)
+      res.status(200).send(trainingSplits);
     } catch (err) {
       console.log(err);
       res.status(400).send(`error with getTrainingSplits: ${err}`);
@@ -59,11 +65,24 @@ module.exports = {
   },
   getExercises: async (req, res) => {
     try {
-      const exercises = await Exercise.findAll()
-      res.status(200).send(exercises)
+      const exercises = await Exercise.findAll();
+      res.status(200).send(exercises);
     } catch (err) {
       console.log(err);
       res.status(400).send(`error with getExercises: ${err}`);
     }
-  }
+  },
+  getSplitsAndWorkouts: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const workoutSplits = await trainingSplit.findAll({
+        where: { userId },
+        include: [{ model: WorkoutSplit, include: [{ model: Workout }] }],
+      });
+      res.status(200).send(workoutSplits);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(`error with getSplitsAndWorkouts: ${err}`);
+    }
+  },
 };
