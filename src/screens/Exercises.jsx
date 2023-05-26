@@ -49,9 +49,6 @@ const Exercises = () => {
     axios.get("/api/getExercises").then((res) => {
       setExercises(res.data);
     });
-    axios.get(`/api/getUserWorkouts/${userId}`).then((res) => {
-      // setWorkoutId(res.data[res.data.length - 1].id + 1);
-    });
   }, []);
 
   const saveWorkout = async () => {
