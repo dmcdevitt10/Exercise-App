@@ -20,8 +20,6 @@ const TrainingSplits = () => {
   const fridayRef = useRef();
   const saturdayRef = useRef();
 
-  // const [sunday, setSunday] = useState(0)
-
   const sundayWorkoutRef = useRef();
   const mondayWorkoutRef = useRef();
   const tuesdayWorkoutRef = useRef();
@@ -56,14 +54,6 @@ const TrainingSplits = () => {
       .post("/api/addTrainingSplit", splitBody)
       .then((res) => {
         console.log(res.data);
-        // splitNameRef.current.value = "";
-        // sundayRef.current.value = "";
-        // mondayRef.current.value = "";
-        // tuesdayRef.current.value = "";
-        // wednesdayRef.current.value = "";
-        // thurdayRef.current.value = "";
-        // fridayRef.current.value = "";
-        // saturdayRef.current.value = "";
       })
       .catch((err) => console.log(err));
 
@@ -90,43 +80,7 @@ const TrainingSplits = () => {
         }
       });
     }, 1000);
-
-    // let splitBody = {
-    //   split_name: splitNameRef.current.value,
-    //   sunday: sundayRef.current.value,
-    //   monday: mondayRef.current.value,
-    //   tuesday: tuesdayRef.current.value,
-    //   wednesday: wednesdayRef.current.value,
-    //   thursday: thurdayRef.current.value,
-    //   friday: fridayRef.current.value,
-    //   saturday: saturdayRef.current.value,
-    //   userId,
-    // };
-
-    // let workoutRefsArr = [
-    //   sundayWorkoutRef.current.value,
-    //   mondayWorkoutRef.current.value,
-    //   tuesdayWorkoutRef.current.value,
-    //   wednesdayWorkoutRef.current.value,
-    //   thursdayWorkoutRef.current.value,
-    //   fridayWorkoutRef.current.value,
-    //   saturdayWorkoutRef.current.value,
-    // ];
-
-    // console.log(workoutRefsArr, splitBody)
-
-    // console.log(
-    //   sundayWorkoutRef.current.value,
-    //   mondayWorkoutRef.current.value,
-    //   tuesdayWorkoutRef.current.value,
-    //   wednesdayWorkoutRef.current.value,
-    //   thursdayWorkoutRef.current.value,
-    //   fridayWorkoutRef.current.value,
-    //   saturdayWorkoutRef.current.value
-    // );
   };
-
-  // setTimeout(() => console.log(sundayWorkoutRef.current.value), 3000)
 
   return (
     <div>

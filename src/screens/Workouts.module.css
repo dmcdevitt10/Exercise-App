@@ -1,9 +1,42 @@
 .workouts_container {
-    background-color: rgb(153, 153, 173);
-    /* height: calc(100vh - 90px); */
     height: fit-content;
-    /* margin-top: 90px; */
     width: 100%;
-    color: white;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
+
+.workout_card {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: 130px;
+    border: 1px solid rgb(230, 230, 230);
+}
+
+.name_container {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 40%;
+}
+
+.name_container h1 {
+    color: red;
+    margin-left: 13px;
+}
+
+.exercises_container {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60%;
+}
+
+.exercises_container h3 {
+}
+
