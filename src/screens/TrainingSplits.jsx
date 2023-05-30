@@ -1,87 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import headerClasses from "../global-components/header.module.css";
+import axios from "axios";
 
+import headerClasses from "../global-components/header.module.css";
 import AuthContext from "../global-components/AuthContext";
 
 const TrainingSplits = () => {
   const authCtx = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
-  const [workouts, setWorkouts] = useState([]);
   const navigate = useNavigate();
-
-  const splitNameRef = useRef();
-  const sundayRef = useRef();
-  const mondayRef = useRef();
-  const tuesdayRef = useRef();
-  const wednesdayRef = useRef();
-  const thurdayRef = useRef();
-  const fridayRef = useRef();
-  const saturdayRef = useRef();
-
-  const sundayWorkoutRef = useRef();
-  const mondayWorkoutRef = useRef();
-  const tuesdayWorkoutRef = useRef();
-  const wednesdayWorkoutRef = useRef();
-  const thursdayWorkoutRef = useRef();
-  const fridayWorkoutRef = useRef();
-  const saturdayWorkoutRef = useRef();
+  const [splits, setSplits] = useState();
 
   useEffect(() => {
     axios.get(`/api/getSplitsAndWorkouts/${userId}`).then((res) => {
-      console.log(res.data);
-    });
-    axios.get(`/api/getUserWorkouts/${userId}`).then((res) => {
-      setWorkouts(res.data);
+      setSplits(res.data);
     });
   }, []);
-
-  const submitTrainingSplit = (e) => {
-    e.preventDefault();
-    let splitBody = {
-      split_name: splitNameRef.current.value,
-      sunday: sundayRef.current.value,
-      monday: mondayRef.current.value,
-      tuesday: tuesdayRef.current.value,
-      wednesday: wednesdayRef.current.value,
-      thursday: thurdayRef.current.value,
-      friday: fridayRef.current.value,
-      saturday: saturdayRef.current.value,
-      userId,
-    };
-    axios
-      .post("/api/addTrainingSplit", splitBody)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-
-    setTimeout(() => {
-      axios.get(`/api/getUserTrainingSplits/${userId}`).then((res) => {
-        let workoutRefsArr = [
-          sundayWorkoutRef.current.value,
-          mondayWorkoutRef.current.value,
-          tuesdayWorkoutRef.current.value,
-          wednesdayWorkoutRef.current.value,
-          thursdayWorkoutRef.current.value,
-          fridayWorkoutRef.current.value,
-          saturdayWorkoutRef.current.value,
-        ];
-
-        for (let i = 0; i < workoutRefsArr.length; i++) {
-          let workoutSplitBody = {
-            workoutId: workoutRefsArr[i],
-            trainingSplitId: res.data[res.data.length - 1].id,
-          };
-          axios.post("/api/addWorkoutSplit", workoutSplitBody).then((res) => {
-            console.log(res.data);
-          });
-        }
-      });
-    }, 1000);
-  };
-
+  console.log(splits);
   return (
     <div>
       <header className={headerClasses.header}>
@@ -107,77 +42,48 @@ const TrainingSplits = () => {
           </ul>
         </nav>
       </header>
-
-      <form onSubmit={submitTrainingSplit}>
-        <div>
-          <h3>Split Name</h3>
-          <input ref={splitNameRef} placeholder="Name" />
-        </div>
-        <div>
-          <h3>Sunday</h3>
-          <input ref={sundayRef} placeholder="Muscle Group" />
-          <select ref={sundayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Monday</h3>
-          <input ref={mondayRef} placeholder="Muscle Group" />
-          <select ref={mondayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Tuesday</h3>
-          <input ref={tuesdayRef} placeholder="Muscle Group" />
-          <select ref={tuesdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Wednesday</h3>
-          <input ref={wednesdayRef} placeholder="Muscle Group" />
-          <select ref={wednesdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Thursday</h3>
-          <input ref={thurdayRef} placeholder="Muscle Group" />
-          <select ref={thursdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Friday</h3>
-          <input ref={fridayRef} placeholder="Muscle Group" />
-          <select ref={fridayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Saturday</h3>
-          <input ref={saturdayRef} placeholder="Muscle Group" />
-          <select ref={saturdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <button type="submit">Save training split</button>
-      </form>
+      <div>
+        {splits?.map((split) => {
+          return (
+            <div>
+              <div>
+                <h2>{split.split_name}</h2>
+                <h3>Sunday</h3>
+                <h3>Monday</h3>
+                <h3>Tuesday</h3>
+                <h3>Wednesday</h3>
+                <h3>Thursday</h3>
+                <h3>Friday</h3>
+                <h3>Saturday</h3>
+              </div>
+              <div>
+                <h3>{split.sunday}</h3>
+                <h3>{split.monday}</h3>
+                <h3>{split.tuesday}</h3>
+                <h3>{split.wednesday}</h3>
+                <h3>{split.thursday}</h3>
+                <h3>{split.friday}</h3>
+                <h3>{split.saturday}</h3>
+              </div>
+              <div>
+                {split.workouts_splits.map((association) => {
+                  return (
+                    <div>
+                      <h2>{association.workout.workout_name}</h2>
+                      <h3>{association.workout.exercise1}</h3>
+                      <h3>{association.workout.exercise2}</h3>
+                      <h3>{association.workout.exercise3}</h3>
+                      <h3>{association.workout.exercise4}</h3>
+                      <h3>{association.workout.exercise5}</h3>
+                      <h3>{association.workout.exercise6}</h3>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
