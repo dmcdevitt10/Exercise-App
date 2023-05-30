@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import headerClasses from "../global-components/header.module.css";
+import classes from "./TrainingSplits.module.css";
 import AuthContext from "../global-components/AuthContext";
 
 const TrainingSplits = () => {
@@ -42,47 +43,162 @@ const TrainingSplits = () => {
           </ul>
         </nav>
       </header>
-      <div>
+      <div className={classes.splits_container}>
+        <button
+          className={classes.split_button}
+          onClick={() => navigate("/add-split")}
+        >
+          Create New Split
+        </button>
         {splits?.map((split) => {
           return (
-            <div>
-              <div>
+            <div className={classes.split_card}>
+              <div className={classes.split_name_container}>
                 <h2>{split.split_name}</h2>
-                <h3>Sunday</h3>
-                <h3>Monday</h3>
-                <h3>Tuesday</h3>
-                <h3>Wednesday</h3>
-                <h3>Thursday</h3>
-                <h3>Friday</h3>
-                <h3>Saturday</h3>
               </div>
-              <div>
-                <h3>{split.sunday}</h3>
-                <h3>{split.monday}</h3>
-                <h3>{split.tuesday}</h3>
-                <h3>{split.wednesday}</h3>
-                <h3>{split.thursday}</h3>
-                <h3>{split.friday}</h3>
-                <h3>{split.saturday}</h3>
-              </div>
-              <div>
-                {split.workouts_splits.map((association) => {
-                  return (
-                    <div>
-                      <h2>{association.workout.workout_name}</h2>
-                      <h3>{association.workout.exercise1}</h3>
-                      <h3>{association.workout.exercise2}</h3>
-                      <h3>{association.workout.exercise3}</h3>
-                      <h3>{association.workout.exercise4}</h3>
-                      <h3>{association.workout.exercise5}</h3>
-                      <h3>{association.workout.exercise6}</h3>
-                    </div>
-                  );
-                })}
+              <div className={classes.days_container}>
+                <div className={classes.info_container}>
+                  <div className={classes.daydiv}>
+                    <h4>Sunday</h4>
+                  </div>
+                  <div className={classes.namediv}>
+                    <h3>{split.sunday}</h3>
+                  </div>
+                  <div className={classes.workoutdiv}>
+                    <h4>
+                      Workout: {split.workouts_splits[0].workout.workout_name}
+                    </h4>
+                  </div>
+                </div>
+                <div className={classes.info_container}>
+                  <div className={classes.daydiv}>
+                    <h4>Monday</h4>
+                  </div>
+                  <div className={classes.namediv}>
+                    <h3>{split.monday}</h3>
+                  </div>
+                  <div className={classes.workoutdiv}>
+                    <h4>
+                      Workout: {split.workouts_splits[1].workout.workout_name}
+                    </h4>
+                  </div>
+                </div>
+                <div className={classes.info_container}>
+                  <div className={classes.daydiv}>
+                    <h4>Tuesday</h4>
+                  </div>
+                  <div className={classes.namediv}>
+                    <h3>{split.tuesday}</h3>
+                  </div>
+                  <div className={classes.workoutdiv}>
+                    <h4>
+                      Workout: {split.workouts_splits[2].workout.workout_name}
+                    </h4>
+                  </div>
+                </div>
+                <div className={classes.info_container}>
+                  <div className={classes.daydiv}>
+                    <h4>Wednesday</h4>
+                  </div>
+                  <div className={classes.namediv}>
+                    <h3>{split.wednesday}</h3>
+                  </div>
+                  <div className={classes.workoutdiv}>
+                    <h4>
+                      Workout: {split.workouts_splits[3].workout.workout_name}
+                    </h4>
+                  </div>
+                </div>
+                <div className={classes.info_container}>
+                  <div className={classes.daydiv}> 
+                    <h4>Thursday</h4>
+                  </div>
+                  <div className={classes.namediv}>
+                    <h3>{split.thursday}</h3>
+                  </div>
+                  <div className={classes.workoutdiv}>
+                    <h4>
+                      Workout: {split.workouts_splits[4].workout.workout_name}
+                    </h4>
+                  </div>
+                </div>
+                <div className={classes.info_container}>
+                  <div className={classes.daydiv}>
+                    <h4>Friday</h4>
+                  </div>
+                  <div className={classes.namediv}>
+                    <h3>{split.friday}</h3>
+                  </div>
+                  <div className={classes.workoutdiv}>
+                    <h4>
+                      Workout: {split.workouts_splits[5].workout.workout_name}
+                    </h4>
+                  </div>
+                </div>
+                <div className={classes.info_container}>
+                  <div className={classes.daydiv}>
+                    <h4>Saturday</h4>
+                  </div>
+                  <div className={classes.namediv}>
+                    <h3>{split.sunday}</h3>
+                  </div>
+                  <div className={classes.workoutdiv}>
+                    <h4>
+                      Workout: {split.workouts_splits[6].workout.workout_name}
+                    </h4>
+                  </div>
+                </div>
               </div>
             </div>
           );
         })}
+
+        {/* {splits?.map((split) => {
+          return (
+            <div className={classes.split_card}>
+              <div className={classes.split_name_container}>
+                <h2>{split.split_name}</h2>
+              </div>
+              <div className={classes.days_container}>
+                <div className={classes.info_container}>
+                  <h4>Sunday</h4>
+                  <h3>{split.sunday}</h3>
+                  <h2>{split.workouts_splits[0].workout.workout_name}</h2>
+                </div>
+                <div className={classes.info_container}>
+                  <h4>Monday</h4>
+                  <h3>{split.monday}</h3>
+                  <h2>{split.workouts_splits[1].workout.workout_name}</h2>
+                </div>
+                <div className={classes.info_container}>
+                  <h4>Tuesday</h4>
+                  <h3>{split.tuesday}</h3>
+                  <h2>{split.workouts_splits[2].workout.workout_name}</h2>
+                </div >
+                <div className={classes.info_container}>
+                  <h4>Wednesday</h4>
+                  <h3>{split.wednesday}</h3>
+                  <h2>{split.workouts_splits[3].workout.workout_name}</h2>
+                </div>
+                <div className={classes.info_container}>
+                  <h4>Thursday</h4>
+                  <h3>{split.thursday}</h3>
+                  <h2>{split.workouts_splits[4].workout.workout_name}</h2>
+                </div>
+                <div className={classes.info_container}>
+                  <h4>Friday</h4>
+                  <h3>{split.friday}</h3>
+                  <h2>{split.workouts_splits[5].workout.workout_name}</h2>
+                </div>
+                <div className={classes.info_container}>
+                  <h4>Saturday</h4>
+                  <h3>{split.sunday}</h3>
+                  <h2>{split.workouts_splits[6].workout.workout_name}</h2>
+                </div>
+              </div>
+            </div>
+          );
+        })} */}
       </div>
     </div>
   );

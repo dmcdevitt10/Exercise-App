@@ -80,11 +80,14 @@ const AddSplit = () => {
         }
       });
     }, 1000);
+
+    navigate('/training-splits')
   };
 
   return (
     <div>
       <header className={headerClasses.header}>
+        <button onClick={() => navigate('/training-splits')}>Go Back</button>
         <nav>
           <ul>
             <li>
