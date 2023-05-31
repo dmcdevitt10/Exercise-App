@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import headerClasses from "../global-components/header.module.css";
+import {BiArrowBack} from 'react-icons/bi'
 
 import classes from "./AddSplit.module.css";
 import AuthContext from "../global-components/AuthContext";
@@ -88,7 +89,6 @@ const AddSplit = () => {
   return (
     <div>
       <header className={headerClasses.header}>
-        <button onClick={() => navigate("/training-splits")}>Go Back</button>
         <nav>
           <ul>
             <li>
@@ -111,6 +111,8 @@ const AddSplit = () => {
           </ul>
         </nav>
       </header>
+
+      <button className={classes.goback} onClick={() => navigate("/training-splits")}>Back</button>
       <div className={classes.form_container}>
         <form className={classes.form} onSubmit={submitTrainingSplit}>
           <div className={classes.name_container}>
@@ -208,7 +210,9 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <button type="submit">Save training split</button>
+          <div className={classes.btndiv}>
+            <button type="submit">Save training split</button>
+          </div>
         </form>
       </div>
     </div>

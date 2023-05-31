@@ -95,14 +95,12 @@ const Exercises = () => {
           workoutId: res.data[res.data.length - 1].id,
         };
 
-        
         axios.post("/api/addSetsReps", setsRepsBody).then((res) => {
           console.log(res.data);
         });
-        
       });
     }, 1000);
-    
+
     setTimeout(() => {
       setWorkout([]);
       workoutNameRef.current.value = "";
@@ -353,10 +351,10 @@ const Exercises = () => {
             ? exercises?.map((exercise) => {
                 return (
                   <div className={classes.exercise_card}>
-                    <h3>{exercise.name}</h3>
-                    <h3>{exercise.target}</h3>
-                    <h3>{exercise.bodyPart}</h3>
-                    <h3>{exercise.equipment}</h3>
+                    <h2>{exercise.name}</h2>
+                    <h3>Target Muscle: {exercise.target}</h3>
+                    <h3>Body part: {exercise.bodyPart}</h3>
+                    <h3>Equipment: {exercise.equipment}</h3>
                     <img src={exercise.gifUrl} />
                     {workoutDisplay ? (
                       <button
@@ -375,10 +373,10 @@ const Exercises = () => {
                 .map((exercise) => {
                   return (
                     <div className={classes.exercise_card}>
-                      <h3>{exercise.name}</h3>
-                      <h3>{exercise.target}</h3>
-                      <h3>{exercise.bodyPart}</h3>
-                      <h3>{exercise.equipment}</h3>
+                      <h2>{exercise.name}</h2>
+                      <h3>Target Muscle: {exercise.target}</h3>
+                      <h3>Body part: {exercise.bodyPart}</h3>
+                      <h3>Equipment: {exercise.equipment}</h3>
                       <img src={exercise.gifUrl} />
                       {workoutDisplay ? (
                         <button

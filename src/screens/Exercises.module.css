@@ -24,6 +24,7 @@
   background-color: transparent;
   color: rgb(255, 255, 255);
   font-size: 1.35rem;
+  
 }
 
 .exercisesHeader li button:hover {
@@ -93,11 +94,27 @@
   border: 2px solid red;
   box-shadow: 5px 5px 11px rgb(238, 188, 188);
   border-radius: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
 }
 
-.exercise_card:hover {
-  width: 22.7%;
-  transition: 0.5s;
+.exercise_card button {
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  height: 30px;
+  width: 160px;
+  border: 0px;
+}
+
+.exercise_card button:hover {
+  background-color: red;
+  cursor: pointer;
+  transition: 0.28s;
 }
 
 .exercise_card img {
@@ -129,7 +146,7 @@
   position: fixed;
   bottom: 30px;
   right: 40px;
-  height: 300px;
+  height: 440px;
   width: 430px;
   display: flex;
   flex-direction: column;
@@ -138,8 +155,51 @@
   gap: 8px;
   transition: .22s;
   border-radius: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  color: white;
+  text-align: center;
 }
 
-.workout_display h4, h1 {
-  color: white;
+.workout_display h1 {
+  font-size: 2.7rem;
 }
+
+.workout_display h4 {
+  font-size: 1.2rem;
+}
+
+.workout_display button {
+  height: 32px;
+  width: 160px;
+  border-radius: 30px;
+  background-color: white;
+  color: black;
+  font-size: 1.1rem;
+  border: 0px;
+  margin-top: 18px;
+}
+
+.workout_display button:hover {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  transition: 0.28s;
+}
+
+.workout_display input {
+  height: 22px;
+  background-color: transparent;
+  color: white;
+  outline: 0;
+  border: 0px;
+  border-bottom: 2px solid white;
+}
+
+.workout_display input:focus {
+  border-bottom: 2px solid red;
+}
+
+
+/* .workout_display h4, h1 {
+  color: white;
+} */

@@ -38,3 +38,7 @@ ul {
   gap: 40px;
   list-style: none;
 } */
+
+button {
+  font-family: 'Open Sans', sans-serif;
+}
