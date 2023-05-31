@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import headerClasses from "../global-components/header.module.css";
 
+import classes from "./AddSplit.module.css";
 import AuthContext from "../global-components/AuthContext";
 
 const AddSplit = () => {
@@ -81,13 +82,13 @@ const AddSplit = () => {
       });
     }, 1000);
 
-    navigate('/training-splits')
+    navigate("/training-splits");
   };
 
   return (
     <div>
       <header className={headerClasses.header}>
-        <button onClick={() => navigate('/training-splits')}>Go Back</button>
+        <button onClick={() => navigate("/training-splits")}>Go Back</button>
         <nav>
           <ul>
             <li>
@@ -110,77 +111,106 @@ const AddSplit = () => {
           </ul>
         </nav>
       </header>
-
-      <form onSubmit={submitTrainingSplit}>
-        <div>
-          <h3>Split Name</h3>
-          <input ref={splitNameRef} placeholder="Name" />
-        </div>
-        <div>
-          <h3>Sunday</h3>
-          <input ref={sundayRef} placeholder="Muscle Group" />
-          <select ref={sundayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Monday</h3>
-          <input ref={mondayRef} placeholder="Muscle Group" />
-          <select ref={mondayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Tuesday</h3>
-          <input ref={tuesdayRef} placeholder="Muscle Group" />
-          <select ref={tuesdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Wednesday</h3>
-          <input ref={wednesdayRef} placeholder="Muscle Group" />
-          <select ref={wednesdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Thursday</h3>
-          <input ref={thurdayRef} placeholder="Muscle Group" />
-          <select ref={thursdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Friday</h3>
-          <input ref={fridayRef} placeholder="Muscle Group" />
-          <select ref={fridayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <div>
-          <h3>Saturday</h3>
-          <input ref={saturdayRef} placeholder="Muscle Group" />
-          <select ref={saturdayWorkoutRef}>
-            {workouts?.map((workout) => {
-              return <option value={workout.id}>{workout.workout_name}</option>;
-            })}
-          </select>
-        </div>
-        <button type="submit">Save training split</button>
-      </form>
+      <div className={classes.form_container}>
+        <form className={classes.form} onSubmit={submitTrainingSplit}>
+          <div className={classes.name_container}>
+            <h3>Split Name</h3>
+            <input ref={splitNameRef} placeholder="Name" />
+          </div>
+          <div className={classes.day}>
+            <h3>Sunday</h3>
+          </div>
+          <div className={classes.inputs_container}>
+            <input ref={sundayRef} placeholder="Muscle Group" />
+            <select ref={sundayWorkoutRef}>
+              {workouts?.map((workout) => {
+                return (
+                  <option value={workout.id}>{workout.workout_name}</option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={classes.day}>
+            <h3>Monday</h3>
+          </div>
+          <div className={classes.inputs_container}>
+            <input ref={mondayRef} placeholder="Muscle Group" />
+            <select ref={mondayWorkoutRef}>
+              {workouts?.map((workout) => {
+                return (
+                  <option value={workout.id}>{workout.workout_name}</option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={classes.day}>
+            <h3>Tuesday</h3>
+          </div>
+          <div className={classes.inputs_container}>
+            <input ref={tuesdayRef} placeholder="Muscle Group" />
+            <select ref={tuesdayWorkoutRef}>
+              {workouts?.map((workout) => {
+                return (
+                  <option value={workout.id}>{workout.workout_name}</option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={classes.day}>
+            <h3>Wednesday</h3>
+          </div>
+          <div className={classes.inputs_container}>
+            <input ref={wednesdayRef} placeholder="Muscle Group" />
+            <select ref={wednesdayWorkoutRef}>
+              {workouts?.map((workout) => {
+                return (
+                  <option value={workout.id}>{workout.workout_name}</option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={classes.day}>
+            <h3>Thursday</h3>
+          </div>
+          <div className={classes.inputs_container}>
+            <input ref={thurdayRef} placeholder="Muscle Group" />
+            <select ref={thursdayWorkoutRef}>
+              {workouts?.map((workout) => {
+                return (
+                  <option value={workout.id}>{workout.workout_name}</option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={classes.day}>
+            <h3>Friday</h3>
+          </div>
+          <div className={classes.inputs_container}>
+            <input ref={fridayRef} placeholder="Muscle Group" />
+            <select ref={fridayWorkoutRef}>
+              {workouts?.map((workout) => {
+                return (
+                  <option value={workout.id}>{workout.workout_name}</option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={classes.day}>
+            <h3>Saturday</h3>
+          </div>
+          <div className={classes.inputs_container}>
+            <input ref={saturdayRef} placeholder="Muscle Group" />
+            <select ref={saturdayWorkoutRef}>
+              {workouts?.map((workout) => {
+                return (
+                  <option value={workout.id}>{workout.workout_name}</option>
+                );
+              })}
+            </select>
+          </div>
+          <button type="submit">Save training split</button>
+        </form>
+      </div>
     </div>
   );
 };
