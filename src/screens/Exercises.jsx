@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaChevronDown } from "react-icons/fa";
+import {AiOutlineDown} from 'react-icons/ai'
 
 import classes from "./Exercises.module.css";
 import AuthContext from "../global-components/AuthContext";
@@ -11,8 +13,9 @@ const Exercises = () => {
   const [exercises, setExercises] = useState([]);
   const [chosenMuscle, setChosenMuscle] = useState("");
   const [workout, setWorkout] = useState([]);
-  const [workoutDisplay, setWorkoutDisplay] = useState(false);
+  const [workoutDisplay, setWorkoutDisplay] = useState("create");
   const [workoutId, setWorkoutId] = useState(0);
+  const [exercisesPage, setExercisesPage] = useState(true);
   const workoutNameRef = useRef();
 
   const sets = useRef();
@@ -52,6 +55,7 @@ const Exercises = () => {
   }, []);
 
   const saveWorkout = async () => {
+    setWorkoutDisplay('create')
     const workoutBody = {
       workout_name: workoutNameRef.current.value,
       exercise1: null,
@@ -135,7 +139,12 @@ const Exercises = () => {
               <button onClick={() => navigate("/")}>Home</button>
             </li>
             <li>
-              <button onClick={() => navigate("/exercises")}>Exercises</button>
+              <button
+                style={exercisesPage ? { color: "red" } : { color: "white" }}
+                onClick={() => navigate("/exercises")}
+              >
+                Exercises
+              </button>
             </li>
             <li>
               <button onClick={() => navigate("/workouts")}>Workouts</button>
@@ -163,7 +172,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("abductors")}
           >
-            abductors
+            Abductors
           </button>
           <button
             style={
@@ -173,7 +182,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("abs")}
           >
-            abs
+            Abs
           </button>
           <button
             style={
@@ -183,7 +192,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("adductors")}
           >
-            adductors
+            Adductors
           </button>
           <button
             style={
@@ -193,7 +202,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("biceps")}
           >
-            biceps
+            Biceps
           </button>
           <button
             style={
@@ -203,7 +212,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("calves")}
           >
-            calves
+            Calves
           </button>
           <button
             style={
@@ -213,7 +222,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("cardiovascular system")}
           >
-            cardiovascular system
+            Cardiovascular System
           </button>
           <button
             style={
@@ -223,7 +232,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("delts")}
           >
-            delts
+            Delts
           </button>
           <button
             style={
@@ -233,7 +242,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("forearms")}
           >
-            forearms
+            Forearms
           </button>
           <button
             style={
@@ -243,7 +252,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("glutes")}
           >
-            glutes
+            Glutes
           </button>
           <button
             style={
@@ -253,7 +262,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("hamstrings")}
           >
-            hamstrings
+            Hamstrings
           </button>
           <button
             style={
@@ -263,7 +272,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("lats")}
           >
-            lats
+            Lats
           </button>
           <button
             style={
@@ -273,7 +282,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("levator scapulae")}
           >
-            levator scapulae
+            Levator Scapulae
           </button>
           <button
             style={
@@ -283,7 +292,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("pectorals")}
           >
-            pectorals
+            Pectorals
           </button>
           <button
             style={
@@ -293,7 +302,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("quads")}
           >
-            quads
+            Quads
           </button>
           <button
             style={
@@ -303,7 +312,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("serratus anterior")}
           >
-            serratus anterior
+            Serratus Anterior
           </button>
           <button
             style={
@@ -313,7 +322,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("spine")}
           >
-            spine
+            Spine
           </button>
           <button
             style={
@@ -323,7 +332,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("traps")}
           >
-            traps
+            Traps
           </button>
           <button
             style={
@@ -333,7 +342,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("triceps")}
           >
-            triceps
+            Triceps
           </button>
           <button
             style={
@@ -343,7 +352,7 @@ const Exercises = () => {
             }
             onClick={() => setChosenMuscle("upper back")}
           >
-            upper back
+            Upper back
           </button>
         </div>
         <div className={classes.exercises_container}>
@@ -356,11 +365,11 @@ const Exercises = () => {
                     <h3>Body part: {exercise.bodyPart}</h3>
                     <h3>Equipment: {exercise.equipment}</h3>
                     <img src={exercise.gifUrl} />
-                    {workoutDisplay ? (
+                    {workoutDisplay !== 'create' ? (
                       <button
                         onClick={() => setWorkout([...workout, exercise.name])}
                       >
-                        Add to Workout
+                        Add To Workout
                       </button>
                     ) : null}
                   </div>
@@ -378,31 +387,38 @@ const Exercises = () => {
                       <h3>Body part: {exercise.bodyPart}</h3>
                       <h3>Equipment: {exercise.equipment}</h3>
                       <img src={exercise.gifUrl} />
-                      {workoutDisplay ? (
+                      {workoutDisplay !== 'create' ? (
                         <button
                           onClick={() =>
                             setWorkout([...workout, exercise.name])
                           }
                         >
-                          Add to Workout
+                          Add To Workout
                         </button>
                       ) : null}
                     </div>
                   );
                 })}
         </div>
-        {!workoutDisplay ? (
+
+        {workoutDisplay === "create" ? (
           <button
-            onClick={() => setWorkoutDisplay(!workoutDisplay)}
+            onClick={() => setWorkoutDisplay("show")}
             className={classes.workout_btn}
           >
             Create Workout
           </button>
         ) : null}
         <div
-          style={workoutDisplay ? { opacity: 1 } : { opacity: 0 }}
+          style={workoutDisplay === "show" ? { opacity: 1 } : { opacity: 0, zIndex: -3 }}
           className={classes.workout_display}
         >
+          <div
+            className={classes.downbtn}
+            onClick={() => setWorkoutDisplay("showbtn")}
+          >
+            <AiOutlineDown size={28} />
+          </div>
           <h1>Exercises</h1>
           {workout?.map((exercise) => {
             return <h4>{exercise}</h4>;
@@ -410,8 +426,16 @@ const Exercises = () => {
           <input ref={sets} placeholder="sets" />
           <input ref={reps} placeholder="reps" />
           <input ref={workoutNameRef} placeholder="Workout Name" />
-          <button onClick={saveWorkout}>save workout</button>
+          <button onClick={saveWorkout}>Save Workout</button>
         </div>
+        {workoutDisplay === "showbtn" ? (
+          <div className={classes.showbtn}>
+            <div onClick={() => setWorkoutDisplay('show')} className={classes.upbtn}>
+              <AiOutlineDown style = {{transform: 'rotate(180deg)' }} size={28} />
+            </div>
+            <h3>Exercises: {workout.length}</h3>
+          </div>
+        ) : null}
       </div>
     </div>
   );

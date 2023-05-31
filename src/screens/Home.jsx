@@ -9,6 +9,7 @@ import AuthContext from "../global-components/AuthContext";
 const Home = () => {
   const authCtx = useContext(AuthContext);
   const { userId } = useContext(AuthContext)
+  const [homePage, setHomePage] = useState(true)
   const navigate = useNavigate()
 
   const [workouts, setWorkouts] = useState()
@@ -31,7 +32,7 @@ const Home = () => {
         <nav>
           <ul>
             <li>
-              <button onClick={() => navigate("/")}>Home</button>
+              <button style={homePage ? {color: "red"} : {color: "white"}} onClick={() => navigate("/")}>Home</button>
             </li>
             <li>
               <button onClick={() => navigate("/exercises")}>Exercises</button>

@@ -9,6 +9,7 @@ import AuthContext from "../global-components/AuthContext";
 const TrainingSplits = () => {
   const authCtx = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
+  const [splitsPage, setSplitsPage] = useState(true)
   const navigate = useNavigate();
   const [splits, setSplits] = useState();
 
@@ -33,7 +34,7 @@ const TrainingSplits = () => {
               <button onClick={() => navigate("/workouts")}>Workouts</button>
             </li>
             <li>
-              <button onClick={() => navigate("/training-splits")}>
+              <button style={splitsPage ? {color: "red"} : {color: "white"}} onClick={() => navigate("/training-splits")}>
                 Training Splits
               </button>
             </li>

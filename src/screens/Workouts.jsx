@@ -10,6 +10,7 @@ import AuthContext from "../global-components/AuthContext";
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
   const [getWorkouts, setGetWorkouts] = useState(false);
+  const [workoutsPage, setWorkoutsPage] = useState(true)
   const { userId } = useContext(AuthContext);
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const Workouts = () => {
               <button onClick={() => navigate("/exercises")}>Exercises</button>
             </li>
             <li>
-              <button onClick={() => navigate("/workouts")}>Workouts</button>
+              <button style={workoutsPage ? {color: "red"} : {color: "white"}} onClick={() => navigate("/workouts")}>Workouts</button>
             </li>
             <li>
               <button onClick={() => navigate("/training-splits")}>
