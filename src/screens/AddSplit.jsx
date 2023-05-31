@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import headerClasses from "../global-components/header.module.css";
-import {BiArrowBack} from 'react-icons/bi'
+import { BiArrowBack } from "react-icons/bi";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
 import classes from "./AddSplit.module.css";
 import AuthContext from "../global-components/AuthContext";
@@ -112,17 +113,24 @@ const AddSplit = () => {
         </nav>
       </header>
 
-      <button className={classes.goback} onClick={() => navigate("/training-splits")}>Back</button>
+      <button
+        className={classes.goback}
+        onClick={() => navigate("/training-splits")}
+      >
+        Back
+      </button>
       <div className={classes.form_container}>
         <form className={classes.form} onSubmit={submitTrainingSplit}>
           <div className={classes.name_container}>
             <h3>Split Name</h3>
             <input ref={splitNameRef} placeholder="Name" />
           </div>
-          <div className={classes.day}>
+          {/* <div className={classes.day}>
             <h3>Sunday</h3>
-          </div>
+          </div> */}
           <div className={classes.inputs_container}>
+            <h3>Sunday</h3>
+            <HiOutlineArrowNarrowRight size={31} />
             <input ref={sundayRef} placeholder="Muscle Group" />
             <select ref={sundayWorkoutRef}>
               {workouts?.map((workout) => {
@@ -132,10 +140,12 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <div className={classes.day}>
+          {/* <div className={classes.day}>
             <h3>Monday</h3>
-          </div>
+          </div> */}
           <div className={classes.inputs_container}>
+            <h3>Monday</h3>
+            <HiOutlineArrowNarrowRight size={31} />
             <input ref={mondayRef} placeholder="Muscle Group" />
             <select ref={mondayWorkoutRef}>
               {workouts?.map((workout) => {
@@ -145,10 +155,12 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <div className={classes.day}>
+          {/* <div className={classes.day}>
             <h3>Tuesday</h3>
-          </div>
+          </div> */}
           <div className={classes.inputs_container}>
+            <h3>Tuesday</h3>
+            <HiOutlineArrowNarrowRight size={31} />
             <input ref={tuesdayRef} placeholder="Muscle Group" />
             <select ref={tuesdayWorkoutRef}>
               {workouts?.map((workout) => {
@@ -158,10 +170,12 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <div className={classes.day}>
+          {/* <div className={classes.day}>
             <h3>Wednesday</h3>
-          </div>
+          </div> */}
           <div className={classes.inputs_container}>
+            <h3>Wednesday</h3>
+            <HiOutlineArrowNarrowRight size={31} />
             <input ref={wednesdayRef} placeholder="Muscle Group" />
             <select ref={wednesdayWorkoutRef}>
               {workouts?.map((workout) => {
@@ -171,10 +185,12 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <div className={classes.day}>
+          {/* <div className={classes.day}>
             <h3>Thursday</h3>
-          </div>
+          </div> */}
           <div className={classes.inputs_container}>
+            <h3>Thursday</h3>
+            <HiOutlineArrowNarrowRight size={31} />
             <input ref={thurdayRef} placeholder="Muscle Group" />
             <select ref={thursdayWorkoutRef}>
               {workouts?.map((workout) => {
@@ -184,10 +200,12 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <div className={classes.day}>
+          {/* <div className={classes.day}>
             <h3>Friday</h3>
-          </div>
+          </div> */}
           <div className={classes.inputs_container}>
+            <h3>Friday</h3>
+            <HiOutlineArrowNarrowRight size={31} />
             <input ref={fridayRef} placeholder="Muscle Group" />
             <select ref={fridayWorkoutRef}>
               {workouts?.map((workout) => {
@@ -197,10 +215,12 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <div className={classes.day}>
+          {/* <div className={classes.day}>
             <h3>Saturday</h3>
-          </div>
+          </div> */}
           <div className={classes.inputs_container}>
+            <h3>Saturday</h3>
+            <HiOutlineArrowNarrowRight size={31} />
             <input ref={saturdayRef} placeholder="Muscle Group" />
             <select ref={saturdayWorkoutRef}>
               {workouts?.map((workout) => {

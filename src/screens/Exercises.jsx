@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaChevronDown } from "react-icons/fa";
 import {AiOutlineDown} from 'react-icons/ai'
 
 import classes from "./Exercises.module.css";
