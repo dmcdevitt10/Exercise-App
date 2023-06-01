@@ -4,13 +4,12 @@ import axios from "axios";
 
 import classes from "./Workouts.module.css";
 import headerClasses from "../global-components/header.module.css";
-import Header from "../global-components/Header";
 import AuthContext from "../global-components/AuthContext";
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
   const [getWorkouts, setGetWorkouts] = useState(false);
-  const [workoutsPage, setWorkoutsPage] = useState(true)
+  const [workoutsPage, setWorkoutsPage] = useState(true);
   const { userId } = useContext(AuthContext);
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
@@ -28,13 +27,18 @@ const Workouts = () => {
         <nav>
           <ul>
             <li>
-              <button onClick={() => navigate("/")}>Home</button>
+              <button onClick={() => navigate("/")}>Dashboard</button>
             </li>
             <li>
               <button onClick={() => navigate("/exercises")}>Exercises</button>
             </li>
             <li>
-              <button style={workoutsPage ? {color: "red"} : {color: "white"}} onClick={() => navigate("/workouts")}>Workouts</button>
+              <button
+                style={workoutsPage ? { color: "red" } : { color: "white" }}
+                onClick={() => navigate("/workouts")}
+              >
+                Workouts
+              </button>
             </li>
             <li>
               <button onClick={() => navigate("/training-splits")}>
@@ -61,8 +65,10 @@ const Workouts = () => {
                 <h3>{workout.exercise4}</h3>
                 <h3>{workout.exercise5}</h3>
                 <h3>{workout.exercise6}</h3>
-                <h3>{workout.sets_rep.sets}</h3>
-                <h3>{workout.sets_rep.reps}</h3>
+                <h3>Sets: {workout.sets_rep.sets}</h3>
+                <h3>Reps: {workout.sets_rep.reps}</h3>
+              </div>
+              <div className={classes.btn_container}>
                 <button
                   onClick={() => {
                     axios
@@ -87,7 +93,8 @@ const Workouts = () => {
 
 export default Workouts;
 
-{/* <div className={classes.workout_card}>
+{
+  /* <div className={classes.workout_card}>
               <div className={classes.name_container}>
                 <h3>{workout.workout_name}</h3>
               </div>
@@ -114,4 +121,5 @@ export default Workouts;
               >
                 Delete Workout
               </button>
-            </div> */}
+            </div> */
+}

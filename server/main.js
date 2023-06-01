@@ -8,7 +8,7 @@ const {User, Workout, setsReps, trainingSplit, WorkoutSplit} = require('./util/m
 const {register, login} = require('./controllers.js/auth')
 const {addWorkout, addSetsReps, addTrainingSplit, addExercise, addWorkoutSplit} = require('./controllers.js/create')
 const {getUserWorkouts, getUserWorkoutsAndSetsReps, getUserSetsReps, getUserTrainingSplits, getExercises, getSplitsAndWorkouts} = require('./controllers.js/get')
-const {deleteWorkout} = require('./controllers.js/delete')
+const {deleteWorkout, deleteSplit} = require('./controllers.js/delete')
 const {updateWorkout} = require('./controllers.js/update')
 
 const app = express();
@@ -42,6 +42,7 @@ app.get ('/api/getWorkoutSetsReps/:workoutId', getUserSetsReps)
 
 app.post('/api/addTrainingSplit', addTrainingSplit)
 app.get('/api/getUserTrainingSplits/:userId', getUserTrainingSplits)
+app.delete('/api/deleteSplit/:splitId', deleteSplit)
 
 app.post('/api/addExercise', addExercise)
 app.get('/api/getExercises', getExercises)

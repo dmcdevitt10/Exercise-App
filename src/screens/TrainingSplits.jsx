@@ -9,7 +9,8 @@ import AuthContext from "../global-components/AuthContext";
 const TrainingSplits = () => {
   const authCtx = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
-  const [splitsPage, setSplitsPage] = useState(true)
+  const [splitsPage, setSplitsPage] = useState(true);
+  const [getSplits, setGetSplits] = useState(false)
   const navigate = useNavigate();
   const [splits, setSplits] = useState();
 
@@ -17,7 +18,7 @@ const TrainingSplits = () => {
     axios.get(`/api/getSplitsAndWorkouts/${userId}`).then((res) => {
       setSplits(res.data);
     });
-  }, []);
+  }, [getSplits]);
   console.log(splits);
   return (
     <div>
@@ -25,7 +26,7 @@ const TrainingSplits = () => {
         <nav>
           <ul>
             <li>
-              <button onClick={() => navigate("/")}>Home</button>
+              <button onClick={() => navigate("/")}>Dashboard</button>
             </li>
             <li>
               <button onClick={() => navigate("/exercises")}>Exercises</button>
@@ -34,7 +35,10 @@ const TrainingSplits = () => {
               <button onClick={() => navigate("/workouts")}>Workouts</button>
             </li>
             <li>
-              <button style={splitsPage ? {color: "red"} : {color: "white"}} onClick={() => navigate("/training-splits")}>
+              <button
+                style={splitsPage ? { color: "red" } : { color: "white" }}
+                onClick={() => navigate("/training-splits")}
+              >
                 Training Splits
               </button>
             </li>
@@ -56,6 +60,14 @@ const TrainingSplits = () => {
             <div className={classes.split_card}>
               <div className={classes.split_name_container}>
                 <h2>{split.split_name}</h2>
+                <button
+                  onClick={() => {
+                    axios.delete(`/api/deleteSplit/${split.id}`);
+                    setGetSplits(!getSplits)
+                  }}
+                >
+                  Delete Split
+                </button>
               </div>
               <div className={classes.days_container}>
                 <div className={classes.info_container}>
@@ -111,7 +123,7 @@ const TrainingSplits = () => {
                   </div>
                 </div>
                 <div className={classes.info_container}>
-                  <div className={classes.daydiv}> 
+                  <div className={classes.daydiv}>
                     <h4>Thursday</h4>
                   </div>
                   <div className={classes.namediv}>
@@ -153,53 +165,6 @@ const TrainingSplits = () => {
             </div>
           );
         })}
-
-        {/* {splits?.map((split) => {
-          return (
-            <div className={classes.split_card}>
-              <div className={classes.split_name_container}>
-                <h2>{split.split_name}</h2>
-              </div>
-              <div className={classes.days_container}>
-                <div className={classes.info_container}>
-                  <h4>Sunday</h4>
-                  <h3>{split.sunday}</h3>
-                  <h2>{split.workouts_splits[0].workout.workout_name}</h2>
-                </div>
-                <div className={classes.info_container}>
-                  <h4>Monday</h4>
-                  <h3>{split.monday}</h3>
-                  <h2>{split.workouts_splits[1].workout.workout_name}</h2>
-                </div>
-                <div className={classes.info_container}>
-                  <h4>Tuesday</h4>
-                  <h3>{split.tuesday}</h3>
-                  <h2>{split.workouts_splits[2].workout.workout_name}</h2>
-                </div >
-                <div className={classes.info_container}>
-                  <h4>Wednesday</h4>
-                  <h3>{split.wednesday}</h3>
-                  <h2>{split.workouts_splits[3].workout.workout_name}</h2>
-                </div>
-                <div className={classes.info_container}>
-                  <h4>Thursday</h4>
-                  <h3>{split.thursday}</h3>
-                  <h2>{split.workouts_splits[4].workout.workout_name}</h2>
-                </div>
-                <div className={classes.info_container}>
-                  <h4>Friday</h4>
-                  <h3>{split.friday}</h3>
-                  <h2>{split.workouts_splits[5].workout.workout_name}</h2>
-                </div>
-                <div className={classes.info_container}>
-                  <h4>Saturday</h4>
-                  <h3>{split.sunday}</h3>
-                  <h2>{split.workouts_splits[6].workout.workout_name}</h2>
-                </div>
-              </div>
-            </div>
-          );
-        })} */}
       </div>
     </div>
   );

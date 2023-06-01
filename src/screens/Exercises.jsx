@@ -106,9 +106,9 @@ const Exercises = () => {
 
     setTimeout(() => {
       setWorkout([]);
-      workoutNameRef.current.value = "";
-      sets.current.value = "";
-      reps.current.value = "";
+      workoutNameRef.current.value = null;
+      sets.current.value = null;
+      reps.current.value = null;
     }, 2000);
   };
 
@@ -135,7 +135,7 @@ const Exercises = () => {
         <nav>
           <ul>
             <li>
-              <button onClick={() => navigate("/")}>Home</button>
+              <button onClick={() => navigate("/")}>Dashboard</button>
             </li>
             <li>
               <button

@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import headerClasses from "../global-components/header.module.css";
-import { BiArrowBack } from "react-icons/bi";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { AiOutlineLoading } from "react-icons/ai";
 
 import classes from "./AddSplit.module.css";
 import AuthContext from "../global-components/AuthContext";
@@ -12,6 +12,7 @@ const AddSplit = () => {
   const authCtx = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
   const [workouts, setWorkouts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const splitNameRef = useRef();
@@ -40,8 +41,9 @@ const AddSplit = () => {
     });
   }, []);
 
-  const submitTrainingSplit = (e) => {
+  const submitTrainingSplit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     let splitBody = {
       split_name: splitNameRef.current.value,
       sunday: sundayRef.current.value,
@@ -84,7 +86,9 @@ const AddSplit = () => {
       });
     }, 1000);
 
-    navigate("/training-splits");
+    setTimeout(() => {
+      navigate("/training-splits");
+    }, 2500);
   };
 
   return (
@@ -93,7 +97,7 @@ const AddSplit = () => {
         <nav>
           <ul>
             <li>
-              <button onClick={() => navigate("/")}>Home</button>
+              <button onClick={() => navigate("/")}>Dashboard</button>
             </li>
             <li>
               <button onClick={() => navigate("/exercises")}>Exercises</button>
@@ -230,9 +234,13 @@ const AddSplit = () => {
               })}
             </select>
           </div>
-          <div className={classes.btndiv}>
-            <button type="submit">Save training split</button>
-          </div>
+          {loading ? (
+            <div className={classes.loader}></div>
+          ) : (
+            <div className={classes.btndiv}>
+              <button type="submit">Save training split</button>
+            </div>
+          )}
         </form>
       </div>
     </div>
