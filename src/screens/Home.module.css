@@ -6,56 +6,77 @@
 }
 
 .info_container {
-  background-color: rgb(184, 166, 202);
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
   height: 80%;
   width: 32%;
+  box-shadow: 5px 5px 10px rgb(176, 182, 207);
 }
 
 .recentdiv {
-  background-color: blue;
+  background-color: black;
+  color: white;
   height: 13%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-right: 2px solid black;
 }
 
 .namesdiv {
-  background-color: aqua;
   height: 8%;
   display: flex;
   justify-content: space-evenly;
 }
 
+.name_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.name_container:hover {
+  background-color: red;
+  color: white;
+  transition: 0.28s;
+  cursor: pointer;
+}
+
 .middle_div {
-  background-color: rgb(94, 125, 125);
   height: 62%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
 }
 
 .btndiv {
-  background-color: green;
   height: 17%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-right: 2px solid black;
 }
 
 .btndiv button {
-    height: 39px;
-    width: 220px;
-    border-radius: 30px;
-    border: 0px;
-    background-color: black;
-    color: white;
-    font-size: 1.1rem;
+  height: 44px;
+  width: 225px;
+  border-radius: 30px;
+  border: 0px;
+  background-color: black;
+  color: white;
+  font-size: 1.1rem;
 }
 
 .btndiv button:hover {
-    background-color: red;
-    color: white;
-    transition: .28s;
-    cursor: pointer;
+  background-color: red;
+  color: white;
+  transition: 0.28s;
+  cursor: pointer;
 }

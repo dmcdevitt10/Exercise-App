@@ -89,7 +89,7 @@
   height: 450px;
   border: 2px solid red;
   box-shadow: 5px 5px 11px rgb(238, 188, 188);
-  border-radius: 14px;
+  /* border-radius: 14px; */
   font-family: "Bebas Neue", sans-serif;
   display: flex;
   flex-direction: column;
@@ -115,6 +115,7 @@
   height: 30px;
   width: 160px;
   border: 0px;
+  margin-bottom: 4px;
 }
 
 .exercise_card button:hover {
