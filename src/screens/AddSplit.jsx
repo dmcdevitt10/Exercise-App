@@ -43,7 +43,7 @@ const AddSplit = () => {
 
   const submitTrainingSplit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     let splitBody = {
       split_name: splitNameRef.current.value,
       sunday: sundayRef.current.value,
@@ -55,6 +55,7 @@ const AddSplit = () => {
       saturday: saturdayRef.current.value,
       userId,
     };
+
     axios
       .post("/api/addTrainingSplit", splitBody)
       .then((res) => {
@@ -79,6 +80,11 @@ const AddSplit = () => {
             workoutId: workoutRefsArr[i],
             trainingSplitId: res.data[res.data.length - 1].id,
           };
+
+          if (workoutSplitBody.workoutId === "Rest Day") {
+            workoutSplitBody.workoutId = null;
+          }
+
           axios.post("/api/addWorkoutSplit", workoutSplitBody).then((res) => {
             console.log(res.data);
           });
@@ -142,6 +148,7 @@ const AddSplit = () => {
                   <option value={workout.id}>{workout.workout_name}</option>
                 );
               })}
+              <option value="Rest Day">Rest Day</option>
             </select>
           </div>
           {/* <div className={classes.day}>
@@ -157,6 +164,7 @@ const AddSplit = () => {
                   <option value={workout.id}>{workout.workout_name}</option>
                 );
               })}
+              <option value="Rest Day">Rest Day</option>
             </select>
           </div>
           {/* <div className={classes.day}>
@@ -172,6 +180,7 @@ const AddSplit = () => {
                   <option value={workout.id}>{workout.workout_name}</option>
                 );
               })}
+              <option value="Rest Day">Rest Day</option>
             </select>
           </div>
           {/* <div className={classes.day}>
@@ -187,6 +196,7 @@ const AddSplit = () => {
                   <option value={workout.id}>{workout.workout_name}</option>
                 );
               })}
+              <option value="Rest Day">Rest Day</option>
             </select>
           </div>
           {/* <div className={classes.day}>
@@ -202,6 +212,7 @@ const AddSplit = () => {
                   <option value={workout.id}>{workout.workout_name}</option>
                 );
               })}
+              <option value="Rest Day">Rest Day</option>
             </select>
           </div>
           {/* <div className={classes.day}>
@@ -217,6 +228,7 @@ const AddSplit = () => {
                   <option value={workout.id}>{workout.workout_name}</option>
                 );
               })}
+              <option value="Rest Day">Rest Day</option>
             </select>
           </div>
           {/* <div className={classes.day}>
@@ -232,6 +244,7 @@ const AddSplit = () => {
                   <option value={workout.id}>{workout.workout_name}</option>
                 );
               })}
+              <option value="Rest Day">Rest Day</option>
             </select>
           </div>
           {loading ? (
