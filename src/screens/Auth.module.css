@@ -17,3 +17,80 @@
   border: 1px solid rgb(224, 221, 221);
   box-shadow: 5px 5px 11px rgb(168, 163, 163);
 }
+
+.login_register_form button {
+  margin-top: 15px;
+}
+
+.login_register_form h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3rem;
+  color: red;
+}
+
+.login_register_form h4 {
+  font-family: 'Open Sans', sans-serif;
+  color: red;
+  
+}
+
+.login_register_form h4:hover {
+  cursor: pointer;
+  color: rgb(172, 0, 0);
+  
+}
+
+.login_register_form input {
+  width: 40%;
+  outline: 0;
+  border: 0;
+  border-bottom: 3px solid rgb(0, 0, 0);
+  font-size: 1.15rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login_register_form input::placeholder {
+  color: rgb(159, 159, 159);
+  opacity: 0.9;
+}
+
+.login_register_form input:focus {
+  border-bottom: 3px solid red;
+  transition: 0.5s;
+}
+
+.btndiv {
+  width: 100%;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.loginbtn {
+  height: 42px;
+  width: 140px;
+  border-radius: 30px;
+  border: 0px;
+  background-color: black;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.signupbtn {
+  height: 42px;
+  width: 140px;
+  border-radius: 30px;
+  border: 2px solid black;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-size: 1.3rem;
+}
+
+.loginbtn:hover, .signupbtn:hover {
+  background-color: red;
+  color: white;
+  border: 0px;
+  cursor: pointer;
+  transition: .28s;
+}

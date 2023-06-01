@@ -114,6 +114,7 @@ const Home = () => {
             {workouts?.map((workout) => {
               return (
                 <div
+                  onClick={() => setCurrentWorkout(workout.workout_name)}
                   style={
                     currentWorkout === workout.workout_name
                       ? { backgroundColor: "red", color: "white" }
@@ -121,9 +122,7 @@ const Home = () => {
                   }
                   className={classes.name_container}
                 >
-                  <h2 onClick={() => setCurrentWorkout(workout.workout_name)}>
-                    {workout.workout_name}
-                  </h2>
+                  <h2>{workout.workout_name}</h2>
                 </div>
               );
             })}
@@ -132,7 +131,9 @@ const Home = () => {
           {workouts ? workoutsDisplay : null}
 
           <div className={classes.btndiv}>
-            <button onClick={() => navigate("/workouts")}>View All Workouts</button>
+            <button onClick={() => navigate("/workouts")}>
+              View All Workouts
+            </button>
           </div>
         </div>
         <div className={classes.info_container}>
@@ -142,14 +143,16 @@ const Home = () => {
           <div className={classes.namesdiv}>
             {splits?.map((split) => {
               return (
-                <div style={
-                  currentSplit === split.split_name
-                    ? { backgroundColor: "red", color: "white" }
-                    : null
-                } className={classes.name_container}>
-                  <h2 onClick={() => setCurrentSplit(split.split_name)}>
-                    {split.split_name}
-                  </h2>
+                <div
+                  onClick={() => setCurrentSplit(split.split_name)}
+                  style={
+                    currentSplit === split.split_name
+                      ? { backgroundColor: "red", color: "white" }
+                      : null
+                  }
+                  className={classes.name_container}
+                >
+                  <h2>{split.split_name}</h2>
                 </div>
               );
             })}
@@ -158,7 +161,9 @@ const Home = () => {
           {splits ? splitsDisplay : null}
 
           <div className={classes.btndiv}>
-            <button onClick={() => navigate("/training-splits")}>View All Training Splits</button>
+            <button onClick={() => navigate("/training-splits")}>
+              View All Training Splits
+            </button>
           </div>
         </div>
       </div>

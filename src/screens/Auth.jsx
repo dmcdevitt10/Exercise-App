@@ -42,21 +42,28 @@ const Auth = () => {
 
   return (
     <div className={classes.form_container}>
-      <form name="login" onSubmit={submitHandler} className={classes.login_register_form}>
-        {/* {login ? <h1>Login</h1> : <h1>Register</h1>} */}
-        <h1>Login</h1>
+      <form
+        name="login"
+        onSubmit={submitHandler}
+        className={classes.login_register_form}
+      >
+        {login ? <h1>Login</h1> : <h1>Register</h1>}
+
         <input type="text" ref={usernameRef} placeholder="username" />
         <input type="password" ref={passwordRef} placeholder="password" />
-        {login ? (
-          <button type="submit">Login</button>
-        ) : (
-          <button type="submit">Register</button>
-        )}
-        {login ? (
-          <button onClick={() => setLogin(!login)}>Sign Up</button>
-        ) : (
+        <div className={classes.btndiv}>
+          {login ? (
+            <button className={classes.loginbtn} type="submit">Login</button>
+          ) : (
+            <button className={classes.loginbtn} type="submit">Register</button>
+          )}
+          {login ? (
+            <button className={classes.signupbtn} onClick={() => setLogin(!login)}>Sign Up</button>
+          ) : null}
+        </div>
+        {!login ? (
           <h4 onClick={() => setLogin(!login)}>Already have an Account?</h4>
-        )}
+        ) : null}
       </form>
     </div>
   );
