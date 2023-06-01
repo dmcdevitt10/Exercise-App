@@ -50,6 +50,13 @@
     font-weight: 700;
 }
 
+.setsdiv {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+}
+
 .btn_container {
     height: 17%;
     display: flex;

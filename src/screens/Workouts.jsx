@@ -65,8 +65,10 @@ const Workouts = () => {
                 <h3>{workout.exercise4}</h3>
                 <h3>{workout.exercise5}</h3>
                 <h3>{workout.exercise6}</h3>
-                <h3>Sets: {workout.sets_rep.sets}</h3>
-                <h3>Reps: {workout.sets_rep.reps}</h3>
+                <div className={classes.setsdiv}>
+                  <h3>Sets: {workout.sets_rep.sets}</h3>
+                  <h3>Reps: {workout.sets_rep.reps}</h3>
+                </div>
               </div>
               <div className={classes.btn_container}>
                 <button
