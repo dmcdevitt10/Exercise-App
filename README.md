@@ -30,7 +30,7 @@ The exercises page allows users to view all the exercises and filter them by tag
 The workouts page allows users to view the workouts they have created and delete them if they choose.
 
 ## Training Splits Page
-![Training Splits Page](./images/workouts-page.png)
+![Training Splits Page](./images/training-splits-page.png)
 The training splits page allows users to view the training splits they have created and delete them if they choose.
 
 ## Training Splits Form
