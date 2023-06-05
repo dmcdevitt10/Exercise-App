@@ -9,7 +9,6 @@ const {register, login} = require('./controllers.js/auth')
 const {addWorkout, addSetsReps, addTrainingSplit, addExercise, addWorkoutSplit} = require('./controllers.js/create')
 const {getUserWorkouts, getUserWorkoutsAndSetsReps, getUserSetsReps, getUserTrainingSplits, getExercises, getSplitsAndWorkouts} = require('./controllers.js/get')
 const {deleteWorkout, deleteSplit} = require('./controllers.js/delete')
-const {updateWorkout} = require('./controllers.js/update')
 
 const app = express();
 app.use(express.json());
